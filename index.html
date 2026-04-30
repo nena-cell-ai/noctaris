@@ -76,7 +76,7 @@ button:active {
 <h1>🌙 Noctaris ✨</h1>
   <div id="mascota" style="font-size:60px; margin-top:10px;">😴</div>
 <p id="estadoMascota"></p>
-<p>Descansa mejor, vive mejor 💜</p>
+<p>💜 Descansa mejor, vive mejor 💜</p>
 
 <div class="card">
 
@@ -106,7 +106,7 @@ function actualizarMascota() {
 <p id="estadoMascota"></p>
 
   if (datos.length === 0) {
-    mascota.src = "IMG-20260430-WA0002~5.jpg";
+    mascota.innerText = "😴";
     estado.innerText = "Tu mascota está esperando que empieces 💜";
     return;
   }

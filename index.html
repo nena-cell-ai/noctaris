@@ -1,10 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+  <meta charset="UTF-8">
   <title>Noctaris</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0f172a, #1e293b);
+      color: white;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 20px;
+      margin-top: 30px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 15px;
+      background: #a78bfa;
+      color: white;
+      font-size: 16px;
+    }
+
+    button:active {
+      background: #7c3aed;
+    }
+
+    #mensaje {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #c4b5fd;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Bienvenido a Noctaris </h1>
-  <p>Tu app para mejorar tus hábitos de sueño </p>
+
+  <h1>🌙 Noctaris ✨</h1>
+  <p>Tu espacio para mejorar tus hábitos de sueño 💜</p>
+
+  <div class="card">
+    <h2>¿A qué hora te vas a dormir hoy?</h2>
+
+    <input type="time" id="hora" style="padding:10px; border-radius:10px; border:none;">
+
+    <br>
+
+    <button onclick="guardarHora()">Guardar 🌙</button>
+
+    <p id="mensaje"></p>
+  </div>
+
+  <script>
+    function guardarHora() {
+      let hora = document.getElementById("hora").value;
+
+      if (hora === "") {
+        document.getElementById("mensaje").innerText = "Por favor selecciona una hora 🥺";
+        return;
+      }
+
+      localStorage.setItem("horaDormir", hora);
+
+      document.getElementById("mensaje").innerText =
+        "✨ Guardado: hoy dormirás a las " + hora + " 🌙";
+
+    }
+  </script>
+
 </body>
 </html>

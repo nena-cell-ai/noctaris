@@ -1,86 +1,138 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Noctaris</title>
+<meta charset="UTF-8">
+<title>Noctaris</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #0f172a, #1e293b);
-      color: white;
-      text-align: center;
-      padding: 40px;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #0f172a, #1e293b);
+  color: white;
+  text-align: center;
+  padding: 30px;
+}
 
-    h1 {
-      font-size: 2.5em;
-    }
+h1 {
+  font-size: 2.5em;
+}
 
-    .card {
-      background: rgba(255,255,255,0.1);
-      padding: 20px;
-      border-radius: 20px;
-      margin-top: 30px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    }
+.card {
+  background: rgba(255,255,255,0.1);
+  padding: 25px;
+  border-radius: 20px;
+  margin-top: 25px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.5);
+}
 
-    button {
-      margin-top: 20px;
-      padding: 15px 25px;
-      border: none;
-      border-radius: 15px;
-      background: #a78bfa;
-      color: white;
-      font-size: 16px;
-    }
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
 
-    button:active {
-      background: #7c3aed;
-    }
+button {
+  margin-top: 15px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 15px;
+  background: #a78bfa;
+  color: white;
+  font-size: 16px;
+}
 
-    #mensaje {
-      margin-top: 20px;
-      font-size: 18px;
-      color: #c4b5fd;
-    }
-  </style>
+button:active {
+  background: #7c3aed;
+}
+
+#mensaje {
+  margin-top: 15px;
+  color: #c4b5fd;
+}
+
+#frase {
+  margin-top: 20px;
+  font-style: italic;
+  color: #e9d5ff;
+}
+
+#historial {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #ddd6fe;
+}
+</style>
+
 </head>
 
 <body>
 
-  <h1>🌙 Noctaris ✨</h1>
-  <p>Tu espacio para mejorar tus hábitos de sueño 💜</p>
+<h1>🌙 Noctaris</h1>
+<p>Tu espacio para descansar mejor 💜</p>
 
-  <div class="card">
-    <h2>¿A qué hora te vas a dormir hoy?</h2>
+<div class="card">
 
-    <input type="time" id="hora" style="padding:10px; border-radius:10px; border:none;">
+<h2>¿A qué hora dormirás hoy?</h2>
 
-    <br>
+<input type="time" id="hora">
 
-    <button onclick="guardarHora()">Guardar 🌙</button>
+<br>
 
-    <p id="mensaje"></p>
-  </div>
+<button onclick="guardarHora()">Guardar 🌙</button>
 
-  <script>
-    function guardarHora() {
-      let hora = document.getElementById("hora").value;
+<p id="mensaje"></p>
 
-      if (hora === "") {
-        document.getElementById("mensaje").innerText = "Por favor selecciona una hora 🥺";
-        return;
-      }
+<p id="historial"></p>
 
-      localStorage.setItem("horaDormir", hora);
+<p id="frase"></p>
 
-      document.getElementById("mensaje").innerText =
-        "✨ Guardado: hoy dormirás a las " + hora + " 🌙";
+</div>
 
-    }
-  </script>
+<script>
+
+const frases = [
+"Descansar también es avanzar 💜",
+"Mañana será un nuevo comienzo ✨",
+"Tu cuerpo merece paz 🌙",
+"Hoy hiciste lo suficiente 💫",
+"Respira, suelta y descansa 💤"
+];
+
+function mostrarFrase() {
+  const random = Math.floor(Math.random() * frases.length);
+  document.getElementById("frase").innerText = frases[random];
+}
+
+function guardarHora() {
+  let hora = document.getElementById("hora").value;
+
+  if (hora === "") {
+    document.getElementById("mensaje").innerText = "Selecciona una hora 🥺";
+    return;
+  }
+
+  localStorage.setItem("horaDormir", hora);
+
+  document.getElementById("mensaje").innerText =
+    "✨ Guardado: dormirás a las " + hora + " 🌙";
+
+  mostrarUltimaHora();
+}
+
+function mostrarUltimaHora() {
+  let ultima = localStorage.getItem("horaDormir");
+
+  if (ultima) {
+    document.getElementById("historial").innerText =
+      "🌙 Última hora registrada: " + ultima;
+  }
+}
+
+mostrarFrase();
+mostrarUltimaHora();
+
+</script>
 
 </body>
 </html>

@@ -8,10 +8,10 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #0f172a, #1e293b);
+  background: linear-gradient(to bottom, #0f172a, #020617);
   color: white;
   text-align: center;
-  padding: 30px;
+  padding: 20px;
 }
 
 h1 {
@@ -19,11 +19,11 @@ h1 {
 }
 
 .card {
-  background: rgba(255,255,255,0.1);
-  padding: 25px;
+  background: rgba(255,255,255,0.08);
+  padding: 20px;
   border-radius: 20px;
-  margin-top: 25px;
-  box-shadow: 0 0 25px rgba(0,0,0,0.5);
+  margin-top: 20px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
 }
 
 input {
@@ -33,59 +33,61 @@ input {
 }
 
 button {
-  margin-top: 15px;
-  padding: 12px 25px;
+  margin-top: 10px;
+  padding: 12px 20px;
   border: none;
   border-radius: 15px;
   background: #a78bfa;
   color: white;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 button:active {
   background: #7c3aed;
 }
 
-#mensaje {
-  margin-top: 15px;
+.small {
+  font-size: 13px;
   color: #c4b5fd;
 }
 
 #frase {
-  margin-top: 20px;
+  margin-top: 15px;
   font-style: italic;
   color: #e9d5ff;
 }
 
-#historial {
-  margin-top: 15px;
-  font-size: 14px;
-  color: #ddd6fe;
+#racha {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.lista {
+  margin-top: 10px;
+  text-align: left;
 }
 </style>
-
 </head>
 
 <body>
 
 <h1>🌙 Noctaris</h1>
-<p>Tu espacio para descansar mejor 💜</p>
+<p>Descansa mejor, vive mejor 💜</p>
 
 <div class="card">
 
-<h2>¿A qué hora dormirás hoy?</h2>
+<h3>¿A qué hora dormirás hoy?</h3>
 
 <input type="time" id="hora">
-
 <br>
 
 <button onclick="guardarHora()">Guardar 🌙</button>
-
-<p id="mensaje"></p>
-
-<p id="historial"></p>
+<button onclick="borrarDatos()">Reiniciar 🔄</button>
 
 <p id="frase"></p>
+<p id="racha"></p>
+
+<div class="lista" id="lista"></div>
 
 </div>
 
@@ -107,30 +109,40 @@ function mostrarFrase() {
 function guardarHora() {
   let hora = document.getElementById("hora").value;
 
-  if (hora === "") {
-    document.getElementById("mensaje").innerText = "Selecciona una hora 🥺";
-    return;
-  }
+  if (hora === "") return;
 
-  localStorage.setItem("horaDormir", hora);
+  let datos = JSON.parse(localStorage.getItem("registroSueño")) || [];
 
-  document.getElementById("mensaje").innerText =
-    "✨ Guardado: dormirás a las " + hora + " 🌙";
+  const hoy = new Date().toLocaleDateString();
 
-  mostrarUltimaHora();
+  datos.push({ fecha: hoy, hora: hora });
+
+  localStorage.setItem("registroSueño", JSON.stringify(datos));
+
+  mostrarDatos();
 }
 
-function mostrarUltimaHora() {
-  let ultima = localStorage.getItem("horaDormir");
+function mostrarDatos() {
+  let datos = JSON.parse(localStorage.getItem("registroSueño")) || [];
 
-  if (ultima) {
-    document.getElementById("historial").innerText =
-      "🌙 Última hora registrada: " + ultima;
-  }
+  let lista = document.getElementById("lista");
+  lista.innerHTML = "<h4>Historial:</h4>";
+
+  datos.slice(-5).reverse().forEach(d => {
+    lista.innerHTML += `<p class="small">🌙 ${d.fecha} → ${d.hora}</p>`;
+  });
+
+  document.getElementById("racha").innerText =
+    "🔥 Registros guardados: " + datos.length;
+}
+
+function borrarDatos() {
+  localStorage.removeItem("registroSueño");
+  mostrarDatos();
 }
 
 mostrarFrase();
-mostrarUltimaHora();
+mostrarDatos();
 
 </script>
 

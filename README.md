@@ -50,7 +50,7 @@
 
 <body>
 
-  <h1>🌙 Noctaris</h1>
+  <h1>🌙 Noctaris ✨</h1>
   <p>Tu espacio para mejorar tus hábitos de sueño </p>
 
   <div class="card">

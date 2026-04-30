@@ -73,7 +73,9 @@ button:active {
 
 <body>
 
-<h1>🌙 Noctaris</h1>
+<h1>🌙 Noctaris ✨</h1>
+  <div id="mascota" style="font-size:60px; margin-top:10px;">😴</div>
+<p id="estadoMascota"></p>
 <p>Descansa mejor, vive mejor 💜</p>
 
 <div class="card">
@@ -94,7 +96,30 @@ button:active {
 </div>
 
 <script>
+function actualizarMascota() {
+  let datos = JSON.parse(localStorage.getItem("registroSueño")) || [];
 
+  let mascota = document.getElementById("mascota");
+  let estado = document.getElementById("estadoMascota");
+
+  if (datos.length === 0) {
+    mascota.innerText = "😴";
+    estado.innerText = "Tu mascota está esperando que empieces 💜";
+    return;
+  }
+
+  if (datos.length < 3) {
+    mascota.innerText = "🙂";
+    estado.innerText = "Tu mascota está creciendo contigo 🌱";
+  } else if (datos.length < 6) {
+    mascota.innerText = "😊";
+    estado.innerText = "¡Tu mascota está feliz! 💜";
+  } else {
+    mascota.innerText = "😄";
+    estado.innerText = "¡Tu mascota está súper fuerte gracias a ti! 🌟";
+  }
+}
+  
 const frases = [
 "Descansar también es avanzar 💜",
 "Mañana será un nuevo comienzo ✨",
@@ -109,6 +134,7 @@ function mostrarFrase() {
 }
 
 function guardarHora() {
+  actualizarMascota();
   let hora = document.getElementById("hora").value;
 
   if (hora === "") return;
@@ -145,6 +171,7 @@ function borrarDatos() {
 
 mostrarFrase();
 mostrarDatos();
+actualizarMascota();
 
 </script>
 

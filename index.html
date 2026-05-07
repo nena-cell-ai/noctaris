@@ -52,6 +52,8 @@ padding:22px;
 margin-top:20px;
 
 box-shadow:0 8px 32px rgba(0,0,0,0.35);
+
+text-align:center;
 }
 
 input{
@@ -98,7 +100,7 @@ transform:scale(0.98);
 }
 
 #mascota{
-width:180px;
+width:220px;
 margin-top:10px;
 
 filter:drop-shadow(0 0 18px rgba(192,132,252,0.5));
@@ -107,6 +109,8 @@ filter:drop-shadow(0 0 18px rgba(192,132,252,0.5));
 #estadoMascota{
 margin-top:10px;
 color:#f5d0fe;
+font-size:22px;
+font-weight:600;
 }
 
 #frase{
@@ -148,11 +152,19 @@ margin-top:10px;
 <body>
 
 <h1>🌙 Noctaris ✨</h1>
-  <div id="mascota" style="font-size:60px; margin-top:10px;">😴</div>
-<p id="estadoMascota"></p>
-<p class="sub">Tu espacio para descansar mejor ✨</p>
-  
+<p class="sub">Tu espacio para descansar mejor</p>
+
 <div class="card">
+
+<img id="mascota" src="gatita1.png">
+
+<h2 id="estadoMascota">
+Tu gatita está esperando 💜
+</h2>
+
+<p id="frase"></p>
+
+</div>
 
 <h3>¿A qué hora dormirás hoy?</h3>
 

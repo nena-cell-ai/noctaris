@@ -232,7 +232,7 @@ Tu gatita está esperando 💜
 <input type="time" id="hora">
 <br>
 
-<button onclick="guardarHora()">Guardar 🌙</button>
+<button onclick="guardarHora()actualizarLogros();">Guardar 🌙</button>
 <button onclick="borrarDatos()">Reiniciar 🔄</button>
 
 <p id="frase"></p>
@@ -243,6 +243,36 @@ Tu gatita está esperando 💜
 </div>
 
 <script>
+function actualizarLogros(){
+
+let datos =
+JSON.parse(localStorage.getItem("registroSueño")) || [];
+
+let logros =
+document.getElementById("logros");
+
+let cantidad = datos.length;
+
+if(cantidad >= 3){
+
+logros.innerHTML =
+"🌙 Primera racha desbloqueada";
+}
+
+if(cantidad >= 7){
+
+logros.innerHTML +=
+"<br>✨ Guardiana de sueños";
+}
+
+if(cantidad >= 14){
+
+logros.innerHTML +=
+"<br>🏆 Maestra del descanso";
+}
+
+}
+
 function actualizarMascota(){
 
 let datos = JSON.parse(localStorage.getItem("registroSueño")) || [];
@@ -342,6 +372,7 @@ function borrarDatos() {
 
 mostrarFrase();
 mostrarDatos();
+actualizarLogros();
 actualizarMascota();
 
 </script>
@@ -356,6 +387,14 @@ actualizarMascota();
 <div class="navitem">
 📊
 <p>Historial</p>
+</div>
+
+<div class="card">
+
+<h2>🏆 Logros</h2>
+
+<div id="logros"></div>
+
 </div>
 
 <div class="navitem">

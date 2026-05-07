@@ -243,28 +243,52 @@ Tu gatita está esperando 💜
 </div>
 
 <script>
-function actualizarMascota() {
-  let datos = JSON.parse(localStorage.getItem("registroSueño")) || [];
+function actualizarMascota(){
 
-  let mascota = document.getElementById("mascota");
-  let estado = document.getElementById("estadoMascota");
+let datos = JSON.parse(localStorage.getItem("registroSueño")) || [];
 
-  if (datos.length === 0) {
-    mascota.innerText = "😴";
-    estado.innerText = "Tu mascota está esperando que empieces 💜";
-    return;
-  }
+let mascota = document.getElementById("mascota");
 
-  if (datos.length < 3) {
-    mascota.innerText = "🙂";
-    estado.innerText = "Tu mascota está creciendo contigo 🌱";
-  } else if (datos.length < 6) {
-    mascota.innerText = "😊";
-    estado.innerText = "¡Tu mascota está feliz! 💜";
-  } else {
-    mascota.innerText = "😄";
-    estado.innerText = "¡Tu mascota está súper fuerte gracias a ti! 🌟";
-  }
+let estado = document.getElementById("estadoMascota");
+
+let cantidad = datos.length;
+
+if(cantidad <= 2){
+
+mascota.src = "gatita.png";
+
+estado.innerText =
+"Tu gatita acaba de despertar 🌙";
+
+}
+
+else if(cantidad <= 5){
+
+mascota.src = "gatita1.png";
+
+estado.innerText =
+"Tu gatita está creciendo contigo ✨";
+
+}
+
+else if(cantidad <= 10){
+
+mascota.src = "gatita2.png";
+
+estado.innerText =
+"Tu gatita se siente feliz y protegida 💜";
+
+}
+
+else{
+
+mascota.src = "gatita3.png";
+
+estado.innerText =
+"Tu gatita lunar alcanzó su forma mágica 😭✨";
+
+}
+
 }
   
 const frases = [

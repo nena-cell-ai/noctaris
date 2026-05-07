@@ -1,72 +1,146 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#a78bfa">
 <meta charset="UTF-8">
 <title>Noctaris</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #0f172a, #020617);
-  color: white;
-  text-align: center;
-  padding: 20px;
+body{
+margin:0;
+padding:20px;
+font-family:'Poppins',sans-serif;
+
+background:
+linear-gradient(rgba(4,7,29,0.85), rgba(4,7,29,0.92)),
+url('https://images.unsplash.com/photo-1502134249126-9f3755a50d78?q=80&w=1200&auto=format&fit=crop');
+
+background-size:cover;
+background-position:center;
+
+color:white;
+min-height:100vh;
 }
 
-h1 {
-  font-size: 2.5em;
+h1{
+font-size:42px;
+margin-bottom:5px;
+font-weight:600;
 }
 
-.card {
-  background: rgba(255,255,255,0.08);
-  padding: 20px;
-  border-radius: 20px;
-  margin-top: 20px;
-  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+.sub{
+color:#d8b4fe;
+margin-bottom:25px;
 }
 
-input {
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
+.card{
+background:rgba(255,255,255,0.08);
+
+backdrop-filter:blur(12px);
+
+border:1px solid rgba(255,255,255,0.1);
+
+border-radius:28px;
+
+padding:22px;
+
+margin-top:20px;
+
+box-shadow:0 8px 32px rgba(0,0,0,0.35);
 }
 
-button {
-  margin-top: 10px;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 15px;
-  background: #a78bfa;
-  color: white;
-  font-size: 15px;
+input{
+width:90%;
+padding:15px;
+
+border:none;
+
+border-radius:18px;
+
+background:rgba(255,255,255,0.12);
+
+color:white;
+
+font-size:18px;
+
+margin-top:10px;
 }
 
-button:active {
-  background: #7c3aed;
+button{
+margin-top:18px;
+
+width:100%;
+
+padding:16px;
+
+border:none;
+
+border-radius:20px;
+
+background:linear-gradient(90deg,#8b5cf6,#c084fc);
+
+color:white;
+
+font-size:17px;
+
+font-weight:600;
+
+box-shadow:0 4px 20px rgba(168,85,247,0.4);
 }
 
-.small {
-  font-size: 13px;
-  color: #c4b5fd;
+button:active{
+transform:scale(0.98);
 }
 
-#frase {
-  margin-top: 15px;
-  font-style: italic;
-  color: #e9d5ff;
+#mascota{
+width:180px;
+margin-top:10px;
+
+filter:drop-shadow(0 0 18px rgba(192,132,252,0.5));
 }
 
-#racha {
-  margin-top: 10px;
-  font-weight: bold;
+#estadoMascota{
+margin-top:10px;
+color:#f5d0fe;
 }
 
-.lista {
-  margin-top: 10px;
-  text-align: left;
+#frase{
+margin-top:15px;
+
+font-style:italic;
+
+color:#ddd6fe;
+}
+
+#racha{
+font-size:22px;
+
+margin-top:15px;
+
+font-weight:600;
+
+color:#c084fc;
+}
+
+.lista{
+margin-top:20px;
+
+text-align:left;
+}
+
+.small{
+background:rgba(255,255,255,0.06);
+
+padding:10px;
+
+border-radius:14px;
+
+margin-top:10px;
 }
 </style>
 </head>
@@ -76,8 +150,8 @@ button:active {
 <h1>🌙 Noctaris ✨</h1>
   <div id="mascota" style="font-size:60px; margin-top:10px;">😴</div>
 <p id="estadoMascota"></p>
-<p>💜 Descansa mejor, vive mejor 💜</p>
-
+<p class="sub">Tu espacio para descansar mejor ✨</p>
+  
 <div class="card">
 
 <h3>¿A qué hora dormirás hoy?</h3>

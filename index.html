@@ -1,117 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Noctaris 🌙</title>
+
+<link rel="manifest" href="manifest.json">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#a78bfa">
-<meta charset="UTF-8">
-<title>Noctaris</title>
 
 <style>
-body{
+
+*{
 margin:0;
-padding:20px;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
 font-family:'Poppins',sans-serif;
 
 background:
-linear-gradient(rgba(4,7,29,0.85), rgba(4,7,29,0.92)),
+linear-gradient(rgba(5,7,30,0.88), rgba(5,7,30,0.95)),
 url('https://images.unsplash.com/photo-1502134249126-9f3755a50d78?q=80&w=1200&auto=format&fit=crop');
 
 background-size:cover;
 background-position:center;
 
 color:white;
+
 min-height:100vh;
+
+padding:20px 20px 120px;
 }
+
+/* TITULOS */
 
 h1{
 font-size:42px;
-margin-bottom:5px;
 font-weight:600;
+margin-bottom:5px;
+
+text-shadow:0 0 15px rgba(192,132,252,0.5);
 }
 
 .sub{
 color:#d8b4fe;
 margin-bottom:25px;
+font-size:15px;
 }
+
+/* CARD */
 
 .card{
 background:rgba(255,255,255,0.08);
 
-backdrop-filter:blur(12px);
+backdrop-filter:blur(18px);
 
 border:1px solid rgba(255,255,255,0.1);
 
-border-radius:28px;
+border-radius:30px;
 
-padding:22px;
+padding:24px;
 
 margin-top:20px;
 
-box-shadow:0 8px 32px rgba(0,0,0,0.35);
+box-shadow:
+0 8px 32px rgba(0,0,0,0.35),
+0 0 20px rgba(168,85,247,0.15);
 
 text-align:center;
 }
 
-input{
-width:90%;
-padding:15px;
-
-border:none;
-
-border-radius:18px;
-
-background:rgba(255,255,255,0.12);
-
-color:white;
-
-font-size:18px;
-
-margin-top:10px;
-}
-
-button{
-margin-top:18px;
-
-width:100%;
-
-padding:16px;
-
-border:none;
-
-border-radius:20px;
-
-background:linear-gradient(90deg,#8b5cf6,#c084fc);
-
-color:white;
-
-font-size:17px;
-
-font-weight:600;
-
-box-shadow:0 4px 20px rgba(168,85,247,0.4);
-}
-
-button:active{
-transform:scale(0.98);
-}
+/* MASCOTA */
 
 #mascota{
-width:220px;
+width:240px;
+
 margin-top:10px;
 
-filter:drop-shadow(0 0 18px rgba(192,132,252,0.5));
+animation:flotar 4s ease-in-out infinite;
+
+filter:
+drop-shadow(0 0 25px rgba(192,132,252,0.5));
+}
+
+@keyframes flotar{
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+100%{
+transform:translateY(0px);
+}
 }
 
 #estadoMascota{
-margin-top:10px;
-color:#f5d0fe;
+margin-top:15px;
+
 font-size:22px;
+
 font-weight:600;
+
+color:#f5d0fe;
 }
+
+/* FRASES */
 
 #frase{
 margin-top:15px;
@@ -119,17 +122,86 @@ margin-top:15px;
 font-style:italic;
 
 color:#ddd6fe;
+
+font-size:15px;
 }
 
-#racha{
-font-size:22px;
+/* INPUT */
+
+input{
+width:100%;
+
+padding:16px;
 
 margin-top:15px;
+
+border:none;
+
+border-radius:20px;
+
+background:rgba(255,255,255,0.1);
+
+color:white;
+
+font-size:18px;
+
+outline:none;
+}
+
+/* BOTONES */
+
+button{
+width:100%;
+
+padding:16px;
+
+margin-top:15px;
+
+border:none;
+
+border-radius:20px;
+
+background:linear-gradient(
+90deg,
+#8b5cf6,
+#c084fc
+);
+
+color:white;
+
+font-size:16px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:0.3s;
+
+box-shadow:
+0 4px 20px rgba(168,85,247,0.35);
+}
+
+button:hover{
+transform:translateY(-2px);
+}
+
+button:active{
+transform:scale(0.98);
+}
+
+/* RACHA */
+
+#racha{
+margin-top:18px;
+
+font-size:20px;
 
 font-weight:600;
 
 color:#c084fc;
 }
+
+/* HISTORIAL */
 
 .lista{
 margin-top:20px;
@@ -140,23 +212,27 @@ text-align:left;
 .small{
 background:rgba(255,255,255,0.06);
 
-padding:10px;
+padding:14px;
 
-border-radius:14px;
+border-radius:16px;
 
 margin-top:10px;
 
-.navbar{
+backdrop-filter:blur(10px);
+}
 
+/* NAVBAR */
+
+.navbar{
 position:fixed;
 
-bottom:15px;
+bottom:18px;
 
 left:50%;
 
 transform:translateX(-50%);
 
-width:90%;
+width:92%;
 
 display:flex;
 
@@ -164,57 +240,70 @@ justify-content:space-around;
 
 align-items:center;
 
-padding:14px 10px;
+padding:16px 10px;
 
-border-radius:28px;
+border-radius:30px;
 
-background:rgba(18,18,40,0.75);
+background:rgba(18,18,40,0.78);
 
-backdrop-filter:blur(14px);
+backdrop-filter:blur(20px);
 
 border:1px solid rgba(255,255,255,0.1);
 
-box-shadow:0 8px 30px rgba(0,0,0,0.4);
+box-shadow:
+0 8px 30px rgba(0,0,0,0.4);
 
 z-index:999;
 }
 
 .navitem{
-
 display:flex;
 
 flex-direction:column;
 
 align-items:center;
 
-font-size:20px;
+font-size:22px;
 
 color:#d8b4fe;
 
 opacity:0.7;
+
+transition:0.3s;
 }
 
 .navitem p{
-
-margin:3px 0 0;
-
 font-size:11px;
+margin-top:4px;
 }
 
 .active{
-
 opacity:1;
-
 color:white;
+
+transform:translateY(-2px);
 }
+
+/* LOGROS */
+
+#logros{
+margin-top:15px;
+
+line-height:1.8;
 }
+
 </style>
 </head>
 
 <body>
 
-<h1>🌙 Noctaris ✨</h1>
-<p class="sub">Tu espacio para descansar mejor</p>
+<h1>🌙 Noctaris</h1>
+
+<p class="sub">
+Tu refugio nocturno para descansar mejor ✨
+</p>
+
+<!-- MASCOTA -->
 
 <div class="card">
 
@@ -226,60 +315,179 @@ Tu gatita está esperando 💜
 
 <p id="frase"></p>
 
+</div>
+
+<!-- REGISTRO -->
+
 <div class="card">
+
 <h3>¿A qué hora dormirás hoy?</h3>
 
 <input type="time" id="hora">
-<br>
 
-<button onclick="guardarHora()actualizarLogros();">Guardar 🌙</button>
-<button onclick="borrarDatos()">Reiniciar 🔄</button>
+<button onclick="guardarHora(); actualizarLogros();">
+Guardar 🌙
+</button>
 
-<p id="frase"></p>
+<button onclick="borrarDatos()">
+Reiniciar 🔄
+</button>
+
 <p id="racha"></p>
 
 <div class="lista" id="lista"></div>
 
 </div>
 
+<!-- LOGROS -->
+
+<div class="card">
+
+<h2>🏆 Logros</h2>
+
+<div id="logros"></div>
+
+</div>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="navitem active">
+🏠
+<p>Inicio</p>
+</div>
+
+<div class="navitem">
+📊
+<p>Historial</p>
+</div>
+
+<div class="navitem">
+🏆
+<p>Logros</p>
+</div>
+
+<div class="navitem">
+⚙️
+<p>Ajustes</p>
+</div>
+
+</div>
+
 <script>
-function actualizarLogros(){
+
+/* FRASES */
+
+const frases = [
+
+"Descansar también es avanzar 💜",
+
+"Mañana será un nuevo comienzo ✨",
+
+"Tu cuerpo merece paz 🌙",
+
+"Hoy hiciste lo suficiente 💫",
+
+"Respira, suelta y descansa 💤"
+
+];
+
+/* FRASE RANDOM */
+
+function mostrarFrase(){
+
+const random =
+Math.floor(Math.random() * frases.length);
+
+document.getElementById("frase").innerText =
+frases[random];
+}
+
+/* GUARDAR HORA */
+
+function guardarHora(){
+
+let hora =
+document.getElementById("hora").value;
+
+if(hora === "") return;
 
 let datos =
 JSON.parse(localStorage.getItem("registroSueño")) || [];
 
-let logros =
-document.getElementById("logros");
+const hoy =
+new Date().toLocaleDateString();
 
-let cantidad = datos.length;
+datos.push({
 
-if(cantidad >= 3){
+fecha:hoy,
+hora:hora
 
-logros.innerHTML =
-"🌙 Primera racha desbloqueada";
+});
+
+localStorage.setItem(
+"registroSueño",
+JSON.stringify(datos)
+);
+
+mostrarDatos();
+
+actualizarMascota();
 }
 
-if(cantidad >= 7){
+/* MOSTRAR DATOS */
 
-logros.innerHTML +=
-"<br>✨ Guardiana de sueños";
+function mostrarDatos(){
+
+let datos =
+JSON.parse(localStorage.getItem("registroSueño")) || [];
+
+let lista =
+document.getElementById("lista");
+
+lista.innerHTML =
+"<h4>Historial:</h4>";
+
+datos.slice(-5).reverse().forEach(d => {
+
+lista.innerHTML += `
+<p class="small">
+🌙 ${d.fecha} → ${d.hora}
+</p>
+`;
+
+});
+
+document.getElementById("racha").innerText =
+"🔥 Registros guardados: " + datos.length;
 }
 
-if(cantidad >= 14){
+/* BORRAR */
 
-logros.innerHTML +=
-"<br>🏆 Maestra del descanso";
+function borrarDatos(){
+
+localStorage.removeItem("registroSueño");
+
+mostrarDatos();
+
+actualizarMascota();
+
+actualizarLogros();
 }
 
-}
+/* MASCOTA */
 
 function actualizarMascota(){
 
-let datos = JSON.parse(localStorage.getItem("registroSueño")) || [];
+let datos =
+JSON.parse(localStorage.getItem("registroSueño")) || [];
 
-let mascota = document.getElementById("mascota");
+let mascota =
+document.getElementById("mascota");
 
-let estado = document.getElementById("estadoMascota");
+let estado =
+document.getElementById("estadoMascota");
 
 let cantidad = datos.length;
 
@@ -320,94 +528,55 @@ estado.innerText =
 }
 
 }
-  
-const frases = [
-"Descansar también es avanzar 💜",
-"Mañana será un nuevo comienzo ✨",
-"Tu cuerpo merece paz 🌙",
-"Hoy hiciste lo suficiente 💫",
-"Respira, suelta y descansa 💤"
-];
 
-function mostrarFrase() {
-  const random = Math.floor(Math.random() * frases.length);
-  document.getElementById("frase").innerText = frases[random];
+/* LOGROS */
+
+function actualizarLogros(){
+
+let datos =
+JSON.parse(localStorage.getItem("registroSueño")) || [];
+
+let logros =
+document.getElementById("logros");
+
+let cantidad = datos.length;
+
+logros.innerHTML = "";
+
+if(cantidad >= 3){
+
+logros.innerHTML +=
+"🌙 Primera racha desbloqueada <br>";
+
 }
 
-function guardarHora() {
-  actualizarMascota();
-  let hora = document.getElementById("hora").value;
+if(cantidad >= 7){
 
-  if (hora === "") return;
+logros.innerHTML +=
+"✨ Guardiana de sueños <br>";
 
-  let datos = JSON.parse(localStorage.getItem("registroSueño")) || [];
-
-  const hoy = new Date().toLocaleDateString();
-
-  datos.push({ fecha: hoy, hora: hora });
-
-  localStorage.setItem("registroSueño", JSON.stringify(datos));
-
-  mostrarDatos();
 }
 
-function mostrarDatos() {
-  let datos = JSON.parse(localStorage.getItem("registroSueño")) || [];
+if(cantidad >= 14){
 
-  let lista = document.getElementById("lista");
-  lista.innerHTML = "<h4>Historial:</h4>";
+logros.innerHTML +=
+"🏆 Maestra del descanso";
 
-  datos.slice(-5).reverse().forEach(d => {
-    lista.innerHTML += `<p class="small">🌙 ${d.fecha} → ${d.hora}</p>`;
-  });
-
-  document.getElementById("racha").innerText =
-    "🔥 Registros guardados: " + datos.length;
 }
 
-function borrarDatos() {
-  localStorage.removeItem("registroSueño");
-  mostrarDatos();
 }
+
+/* INICIO */
 
 mostrarFrase();
+
 mostrarDatos();
-actualizarLogros();
+
 actualizarMascota();
+
+actualizarLogros();
 
 </script>
 
-<div class="navbar">
-
-<div class="navitem active">
-🏠
-<p>Inicio</p>
-</div>
-
-<div class="navitem">
-📊
-<p>Historial</p>
-</div>
-
-<div class="card">
-
-<h2>🏆 Logros</h2>
-
-<div id="logros"></div>
-
-</div>
-
-<div class="navitem">
-🏆
-<p>Logros</p>
-</div>
-
-<div class="navitem">
-⚙️
-<p>Ajustes</p>
-</div>
-
-</div>
-  
 </body>
 </html>

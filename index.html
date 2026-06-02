@@ -614,6 +614,11 @@ document.getElementById("hora").value;
 
 if(hora === "") return;
 
+if(hora === ""){
+  alert("Selecciona una hora"):
+  return;
+}
+
 let datos =
 JSON.parse(localStorage.getItem("registroSueño")) || [];
 

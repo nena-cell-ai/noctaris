@@ -480,35 +480,39 @@ transform:translateY(-2px);
 
 <body>
 
-<!-- EFECTOS -->
-
 <div class="stars"></div>
 <div class="stars2"></div>
 <div class="glow"></div>
 
-<!-- TITULO -->
+<!-- INICIO -->
+
+<section id="inicio" class="pantalla activa">
 
 <h1>🌙 Noctaris</h1>
 
 <p class="sub">
-Tu refugio nocturno para descansar mejor ✨
+Dreamkeeper Edition ✨
 </p>
-
-<!-- MASCOTA -->
 
 <div class="card">
 
 <img id="mascota" src="gatita.png">
 
 <h2 id="estadoMascota">
-Tu gatita está esperando 💜
+Tu compañera lunar te acompaña 💜
 </h2>
 
 <p id="frase"></p>
 
+<div id="coins">
+💎 0 estrellas
 </div>
 
-<!-- REGISTRO -->
+<div id="racha">
+🔥 Racha: 0 días
+</div>
+
+</div>
 
 <div class="card">
 
@@ -516,7 +520,7 @@ Tu gatita está esperando 💜
 
 <input type="time" id="hora">
 
-<button onclick="guardarHora(); actualizarLogros();">
+<button onclick="guardarHora()">
 Guardar 🌙
 </button>
 
@@ -524,13 +528,71 @@ Guardar 🌙
 Reiniciar 🔄
 </button>
 
-<p id="racha"></p>
+</div>
 
-<div class="lista" id="lista"></div>
+</section>
+
+<!-- ESTADISTICAS -->
+
+<section id="estadisticas" class="pantalla">
+
+<div class="card">
+
+<h2>📊 Estadísticas</h2>
+
+<p id="totalNoches"></p>
+
+<p id="nivelActual"></p>
+
+<p id="mejorRacha"></p>
 
 </div>
 
+</section>
+
+<!-- CALENDARIO -->
+
+<section id="calendario" class="pantalla">
+
+<div class="card">
+
+<h2>📅 Calendario Lunar</h2>
+
+<div id="diasCalendario"></div>
+
+</div>
+
+</section>
+
+<!-- TIENDA -->
+
+<section id="tienda" class="pantalla">
+
+<div class="card">
+
+<h2>🎁 Tienda</h2>
+
+<button onclick="comprarItem('🎀 Moño Rosa',100)">
+🎀 Moño Rosa - 100⭐
+</button>
+
+<button onclick="comprarItem('🌙 Halo Lunar',200)">
+🌙 Halo Lunar - 200⭐
+</button>
+
+<button onclick="comprarItem('👑 Corona Noctaris',500)">
+👑 Corona Noctaris - 500⭐
+</button>
+
+<p id="inventario"></p>
+
+</div>
+
+</section>
+
 <!-- LOGROS -->
+
+<section id="logrosPantalla" class="pantalla">
 
 <div class="card">
 
@@ -540,252 +602,74 @@ Reiniciar 🔄
 
 </div>
 
+</section>
+
+<!-- AJUSTES -->
+
+<section id="ajustes" class="pantalla">
+
+<div class="card">
+
+<h2>⚙️ Ajustes</h2>
+
+<p>🎵 Música ambiental próximamente</p>
+
+<p>🎨 Temas desbloqueables próximamente</p>
+
+</div>
+
+</section>
+
 <!-- NAVBAR -->
 
 <div class="navbar">
 
-<div class="navitem active">
+<div class="navitem active"
+onclick="mostrarPantalla('inicio')">
+
 🏠
+
 <p>Inicio</p>
+
 </div>
 
-<div class="navitem">
+<div class="navitem"
+onclick="mostrarPantalla('estadisticas')">
+
 📊
-<p>Historial</p>
+
+<p>Stats</p>
+
 </div>
 
-<div class="navitem">
+<div class="navitem"
+onclick="mostrarPantalla('calendario')">
+
+📅
+
+<p>Calendario</p>
+
+</div>
+
+<div class="navitem"
+onclick="mostrarPantalla('tienda')">
+
+🎁
+
+<p>Tienda</p>
+
+</div>
+
+<div class="navitem"
+onclick="mostrarPantalla('logrosPantalla')">
+
 🏆
+
 <p>Logros</p>
-</div>
-
-<div class="navitem">
-⚙️
-<p>Ajustes</p>
-</div>
 
 </div>
 
-<script>
-
-/* FRASES */
-
-const frases = [
-
-"Tu noche también merece paz 🌙",
-
-"Descansar es una forma de cuidarte 💜",
-
-"Cada sueño reconstruye tu luz ✨",
-
-"Tu gatita está orgullosa de ti 🐈‍⬛",
-
-"Las estrellas también descansan 🌌",
-
-"Mañana será un nuevo comienzo 💫",
-
-"Hoy hiciste suficiente 💤"
-
-];
-
-/* FRASE RANDOM */
-
-function mostrarFrase(){
-
-const random =
-Math.floor(Math.random() * frases.length);
-
-document.getElementById("frase").innerText =
-frases[random];
-}
-
-/* GUARDAR */
-
-function guardarHora(){
-
-document.body.style.transform = "scale(0.995)";
-
-setTimeout(() => {
-document.body.style.transform = "scale(1)";
-}, 150);
-
-let hora =
-document.getElementById("hora").value;
-
-if(hora === "") return;
-
-if(hora === ""){
-  alert("Selecciona una hora"):
-  return;
-}
-
-let datos =
-JSON.parse(localStorage.getItem("registroSueño")) || [];
-
-const hoy =
-new Date().toLocaleDateString();
-
-datos.push({
-fecha:hoy,
-hora:hora
-});
-
-localStorage.setItem(
-"registroSueño",
-JSON.stringify(datos)
-);
-
-mostrarDatos();
-
-actualizarMascota();
-
-actualizarLogros();
-}
-
-/* MOSTRAR DATOS */
-
-function mostrarDatos(){
-
-let datos =
-JSON.parse(localStorage.getItem("registroSueño")) || [];
-
-let lista =
-document.getElementById("lista");
-
-lista.innerHTML =
-"<h4>Historial:</h4>";
-
-datos
-.slice(-5)
-.reverse()
-.forEach(d => {
-
-lista.innerHTML += `
-<p class="small">
-🌙 ${d.fecha} → ${d.hora}
-</p>
-`;
-
-});
-
-document.getElementById("racha").innerText =
-"🔥 Registros guardados: " + datos.length;
-}
-
-/* BORRAR */
-
-function borrarDatos(){
-
-localStorage.removeItem("registroSueño");
-
-mostrarDatos();
-
-actualizarMascota();
-
-actualizarLogros();
-}
-
-/* MASCOTA */
-
-function actualizarMascota(){
-
-let datos =
-JSON.parse(localStorage.getItem("registroSueño")) || [];
-
-let mascota =
-document.getElementById("mascota");
-
-let estado =
-document.getElementById("estadoMascota");
-
-let cantidad = datos.length;
-
-if(cantidad <= 2){
-
-mascota.src = "gatita.png";
-
-estado.innerText =
-"Tu gatita acaba de despertar 🌙";
-
-}
-
-else if(cantidad <= 5){
-
-mascota.src = "gatita1.png";
-
-estado.innerText =
-"Tu gatita está creciendo contigo ✨";
-
-}
-
-else if(cantidad <= 10){
-
-mascota.src = "gatita2.png";
-
-estado.innerText =
-"Tu gatita se siente feliz y protegida 💜";
-
-}
-
-else{
-
-mascota.src = "gatita3.png";
-
-estado.innerText =
-"Tu gatita lunar alcanzó su forma mágica 😭✨";
-
-}
-
-}
-
-/* LOGROS */
-
-function actualizarLogros(){
-
-let datos =
-JSON.parse(localStorage.getItem("registroSueño")) || [];
-
-let logros =
-document.getElementById("logros");
-
-let cantidad = datos.length;
-
-logros.innerHTML = "";
-
-if(cantidad >= 3){
-
-logros.innerHTML +=
-"🌙 Primera racha desbloqueada <br>";
-
-}
-
-if(cantidad >= 7){
-
-logros.innerHTML +=
-"✨ Guardiana de sueños <br>";
-
-}
-
-if(cantidad >= 14){
-
-logros.innerHTML +=
-"🏆 Maestra del descanso";
-
-}
-
-}
-
-/* INICIO */
-
-mostrarFrase();
-
-mostrarDatos();
-
-actualizarMascota();
-
-actualizarLogros();
-
-</script>
+</div>
 
 </body>
 </html>

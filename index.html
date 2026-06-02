@@ -638,5 +638,227 @@ onclick="mostrarPantalla('logrosPantalla')">
 
 </div>
 
+<script>
+
+let estrellas =
+parseInt(localStorage.getItem("estrellas")) || 0;
+
+let inventario =
+JSON.parse(localStorage.getItem("inventario")) || [];
+
+const frases = [
+
+"Las estrellas también descansan 🌌",
+
+"Tu gatita está orgullosa de ti 🐈‍⬛",
+
+"Cada sueño reconstruye tu energía ✨",
+
+"Hoy hiciste suficiente 💜",
+
+"Descansar también es avanzar 🌙"
+
+];
+
+function mostrarFrase(){
+
+const random =
+Math.floor(Math.random()*frases.length);
+
+document.getElementById("frase").innerText =
+frases[random];
+
+}
+
+function mostrarPantalla(id){
+
+document
+.querySelectorAll(".pantalla")
+.forEach(p=>{
+
+p.classList.remove("activa");
+
+});
+
+document
+.getElementById(id)
+.classList.add("activa");
+
+}
+
+function guardarHora(){
+
+let hora =
+document.getElementById("hora").value;
+
+if(hora==="") return;
+
+let datos =
+JSON.parse(
+localStorage.getItem("registroSueño")
+) || [];
+
+const hoy =
+new Date().toLocaleDateString();
+
+datos.push({
+
+fecha:hoy,
+hora:hora
+
+});
+
+localStorage.setItem(
+"registroSueño",
+JSON.stringify(datos)
+);
+
+estrellas += 10;
+
+localStorage.setItem(
+"estrellas",
+estrellas
+);
+
+actualizarTodo();
+
+}
+
+function borrarDatos(){
+
+localStorage.removeItem("registroSueño");
+
+localStorage.removeItem("estrellas");
+
+localStorage.removeItem("inventario");
+
+estrellas = 0;
+
+inventario = [];
+
+actualizarTodo();
+
+}
+
+function comprarItem(nombre,costo){
+
+if(estrellas < costo){
+
+alert(
+"No tienes suficientes estrellas 💔"
+);
+
+return;
+
+}
+
+estrellas -= costo;
+
+inventario.push(nombre);
+
+localStorage.setItem(
+"estrellas",
+estrellas
+);
+
+localStorage.setItem(
+"inventario",
+JSON.stringify(inventario)
+);
+
+actualizarTodo();
+
+}
+
+function actualizarTodo(){
+
+let datos =
+JSON.parse(
+localStorage.getItem("registroSueño")
+) || [];
+
+document.getElementById("coins").innerText =
+"💎 " + estrellas + " estrellas";
+
+document.getElementById("racha").innerText =
+"🔥 Registros: " + datos.length;
+
+document.getElementById("totalNoches").innerText =
+"🌙 Noches registradas: " +
+datos.length;
+
+let nivel =
+"Gatita Dormilona";
+
+if(datos.length >= 7)
+nivel = "Exploradora Lunar";
+
+if(datos.length >= 14)
+nivel = "Guardiana de Sueños";
+
+if(datos.length >= 30)
+nivel = "👑 Reina Lunar";
+
+document.getElementById("nivelActual").innerText =
+"🐈‍⬛ Nivel: " + nivel;
+
+document.getElementById("mejorRacha").innerText =
+"🔥 Mejor racha: " +
+datos.length + " días";
+
+document.getElementById("inventario").innerHTML =
+"<b>Objetos:</b><br>" +
+(inventario.join("<br>") || "Vacío");
+
+let logros = "";
+
+if(datos.length >= 3)
+logros += "🌙 Primera Racha<br>";
+
+if(datos.length >= 7)
+logros += "✨ Guardiana de Sueños<br>";
+
+if(datos.length >= 14)
+logros += "🏆 Maestra del Descanso<br>";
+
+document.getElementById("logros").innerHTML =
+logros || "Aún no hay logros";
+
+let calendario =
+document.getElementById(
+"diasCalendario"
+);
+
+calendario.innerHTML = "";
+
+for(let i=1;i<=30;i++){
+
+let dia =
+document.createElement("div");
+
+dia.classList.add("dia");
+
+dia.innerText = i;
+
+if(i <= datos.length){
+
+dia.classList.add(
+"registrado"
+);
+
+}
+
+calendario.appendChild(dia);
+
+}
+
+}
+
+mostrarFrase();
+
+actualizarTodo();
+
+  </script>
+
 </body>
 </html>

@@ -451,11 +451,52 @@ line-height:2;
 <div class="stars2"></div>
 <div class="glow"></div>
 
+
+<!-- BIENVENIDA -->
+
+<section id="bienvenida" class="pantalla activa">
+
+<div class="card">
+
+<h1>🌙 Bienvenida a Noctaris</h1>
+
+<p class="sub">
+Tu refugio nocturno comienza aquí ✨
+</p>
+
+<h3>
+¿Cómo te gustaría que te llame?
+</h3>
+
+<input
+type="text"
+id="nombreUsuario"
+placeholder="Ej. Nena">
+
+<h3 style="margin-top:20px;">
+🐈‍⬛ ¿Cómo se llamará tu compañera lunar?
+</h3>
+
+<input
+type="text"
+id="nombreMascota"
+placeholder="Ej. Nova">
+
+<button onclick="guardarPerfil()">
+Comenzar aventura ✨
+</button>
+
+</div>
+
 <!-- INICIO -->
 
-<section id="inicio" class="pantalla activa">
+</section>
 
-<h1>🌙 Noctaris</h1>
+<section id="inicio" class="pantalla">
+
+<h1 id="tituloPrincipal">
+✨ Noctaris ✨
+</h1>
 
 <p class="sub">
 Dreamkeeper Edition ✨
@@ -466,7 +507,7 @@ Dreamkeeper Edition ✨
 <img id="mascota" src="gatita.png">
 
 <h2 id="estadoMascota">
-Tu compañera lunar te acompaña 💜
+🐈‍⬛ Tu compañera lunar te acompaña 💜
 </h2>
 
 <p id="frase"></p>
@@ -640,6 +681,12 @@ onclick="mostrarPantalla('logrosPantalla')">
 
 <script>
 
+let nombreUsuario =
+localStorage.getItem("nombreUsuario");
+
+let nombreMascota =
+localStorage.getItem("nombreMascota");
+
 let estrellas =
 parseInt(localStorage.getItem("estrellas")) || 0;
 
@@ -683,6 +730,47 @@ p.classList.remove("activa");
 document
 .getElementById(id)
 .classList.add("activa");
+
+}
+
+function guardarPerfil(){
+
+let usuario =
+document.getElementById(
+"nombreUsuario"
+).value;
+
+let mascota =
+document.getElementById(
+"nombreMascota"
+).value;
+
+if(usuario === "" || mascota === ""){
+
+alert(
+"Completa ambos campos 💜"
+);
+
+return;
+
+}
+
+localStorage.setItem(
+"nombreUsuario",
+usuario
+);
+
+localStorage.setItem(
+"nombreMascota",
+mascota
+);
+
+nombreUsuario = usuario;
+nombreMascota = mascota;
+
+mostrarPantalla("inicio");
+
+actualizarPerfil();
 
 }
 
@@ -848,16 +936,57 @@ dia.classList.add(
 
 }
 
+function actualizarPerfil(){
+
+if(nombreUsuario){
+
+document.getElementById(
+"tituloPrincipal"
+).innerText =
+"🌙 Buenas noches, " +
+nombreUsuario;
+
+}
+
+if(nombreMascota){
+
+document.getElementById(
+"estadoMascota"
+).innerText =
+"🐈‍⬛ " +
+nombreMascota +
+" te estuvo esperando 💜";
+
+}
+
+}
+
 calendario.appendChild(dia);
 
 }
 
 }
 
+
 mostrarFrase();
 
 actualizarTodo();
 
+if(
+localStorage.getItem("nombreUsuario")
+){
+
+mostrarPantalla("inicio");
+
+actualizarPerfil();
+
+}
+else{
+
+mostrarPantalla("bienvenida");
+
+}
+  
   </script>
 
 </body>

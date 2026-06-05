@@ -17,6 +17,34 @@
 
 <style>
 
+select{
+
+width:100%;
+
+padding:15px;
+
+margin-top:12px;
+
+border:none;
+
+border-radius:18px;
+
+background:rgba(255,255,255,.1);
+
+color:white;
+
+font-size:16px;
+
+outline:none;
+}
+
+option{
+
+background:#10194a;
+
+color:white;
+}
+
 *{
 margin:0;
 padding:0;
@@ -487,6 +515,126 @@ Comenzar aventura ✨
 </button>
 
 </div>
+
+<!-- DIAGNÓSTICO INICIAL -->
+
+<section id="diagnostico" class="pantalla">
+
+<div class="card">
+
+<h1>🌙 Diagnóstico Inicial</h1>
+
+<p class="sub">
+Ayúdanos a conocer tus hábitos de descanso ✨
+</p>
+
+<!-- PREGUNTA 1 -->
+
+<h3>
+😴 ¿Cuántas horas duermes normalmente?
+</h3>
+
+<select id="pregunta1">
+
+<option value="">Selecciona una opción</option>
+
+<option>Menos de 4 horas</option>
+
+<option>4 a 5 horas</option>
+
+<option>6 a 7 horas</option>
+
+<option>8 horas o más</option>
+
+</select>
+
+<!-- PREGUNTA 2 -->
+
+<h3 style="margin-top:20px;">
+📱 ¿Usas el teléfono antes de dormir?
+</h3>
+
+<select id="pregunta2">
+
+<option value="">Selecciona una opción</option>
+
+<option>Siempre</option>
+
+<option>Casi siempre</option>
+
+<option>A veces</option>
+
+<option>Nunca</option>
+
+</select>
+
+<!-- PREGUNTA 3 -->
+
+<h3 style="margin-top:20px;">
+😥 ¿Cómo describirías tu nivel de estrés?
+</h3>
+
+<select id="pregunta3">
+
+<option value="">Selecciona una opción</option>
+
+<option>Muy alto</option>
+
+<option>Alto</option>
+
+<option>Moderado</option>
+
+<option>Bajo</option>
+
+</select>
+
+<!-- PREGUNTA 4 -->
+
+<h3 style="margin-top:20px;">
+☕ ¿Consumes cafeína por la noche?
+</h3>
+
+<select id="pregunta4">
+
+<option value="">Selecciona una opción</option>
+
+<option>Todos los días</option>
+
+<option>Varias veces por semana</option>
+
+<option>Ocasionalmente</option>
+
+<option>Nunca</option>
+
+</select>
+
+<!-- PREGUNTA 5 -->
+
+<h3 style="margin-top:20px;">
+🌙 ¿Tienes una rutina fija para dormir?
+</h3>
+
+<select id="pregunta5">
+
+<option value="">Selecciona una opción</option>
+
+<option>Sí, siempre</option>
+
+<option>La mayoría de los días</option>
+
+<option>A veces</option>
+
+<option>No</option>
+
+</select>
+
+<button onclick="guardarDiagnostico()">
+✨ Ver mi resultado
+</button>
+
+</div>
+
+</section>
 
 <!-- INICIO -->
 
@@ -967,6 +1115,55 @@ nombreMascota +
 
 }
 
+function guardarDiagnostico(){
+
+let respuestas = {
+
+sueno:
+document.getElementById("pregunta1").value,
+
+telefono:
+document.getElementById("pregunta2").value,
+
+estres:
+document.getElementById("pregunta3").value,
+
+cafeina:
+document.getElementById("pregunta4").value,
+
+rutina:
+document.getElementById("pregunta5").value
+
+};
+
+localStorage.setItem(
+"diagnostico",
+JSON.stringify(respuestas)
+);
+
+let mensaje = "";
+
+if(
+respuestas.sueno === "Menos de 4 horas" ||
+respuestas.estres === "Muy alto"
+){
+
+mensaje =
+"⚠️ Detectamos hábitos que podrían afectar tu descanso. Noctaris te ayudará a mejorar poco a poco 💜";
+
+}
+else{
+
+mensaje =
+"✨ Tienes una buena base para construir hábitos de sueño saludables.";
+
+}
+
+alert(mensaje);
+
+mostrarPantalla("inicio");
+}
+
 mostrarFrase();
 
 actualizarTodo();
@@ -975,6 +1172,8 @@ if(
 localStorage.getItem("nombreUsuario")
 ){
 
+mostrarPantalla("diagnostico");
+  
 mostrarPantalla("inicio");
 
 actualizarPerfil();

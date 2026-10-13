@@ -151,6 +151,11 @@ footer{text-align:center;color:#8583a8;font-size:10px;padding:14px 8px 5px;line-
 @keyframes kittyTail{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(9deg)}}
 @keyframes kittyHello{0%,100%{transform:translateY(0) rotate(0) scale(1)}35%{transform:translateY(-4px) rotate(-3deg) scale(1.025)}70%{transform:translateY(-1px) rotate(3deg) scale(1.015)}}
 
+
+/* Refuerzo de visibilidad: carita luminosa y detalles grandes incluso en móvil */
+.cat-3d.noctaris-kitty{position:relative!important;isolation:isolate;min-width:124px;min-height:124px;overflow:visible!important}
+.cat-3d.noctaris-kitty .kitty-art{position:relative!important;z-index:5!important;width:124px!important;height:124px!important;min-width:124px;min-height:124px;display:block!important;visibility:visible!important;opacity:1!important;overflow:visible!important}
+
 </style>
 </head>
 <body>
@@ -185,16 +190,16 @@ footer{text-align:center;color:#8583a8;font-size:10px;padding:14px 8px 5px;line-
   <path d="M74 35 L96 15 Q101 11 102 17 L103 50 Z" fill="url(#earGlow)" stroke="#38314f" stroke-width="2"/>
   <path d="M83 35 L97 23 L96 38 Z" fill="url(#innerEar)" opacity=".95"/>
   <path d="M31 60 C31 39 46 29 69 29 C94 29 110 43 110 65 C110 88 94 101 70 101 C46 101 30 84 31 60Z" fill="url(#furGlow)" stroke="#3a3354" stroke-width="1.5"/>
-  <ellipse cx="48" cy="65" rx="12" ry="15" fill="#d8b3ff" opacity=".07"/>
-  <ellipse cx="51" cy="65" rx="8.2" ry="10.5" fill="url(#eyeGlow)"/>
-  <ellipse cx="85" cy="65" rx="8.2" ry="10.5" fill="url(#eyeGlow)"/>
+  <ellipse cx="48" cy="65" rx="12" ry="15" fill="#d8b3ff" opacity=".1"/>
+  <ellipse cx="51" cy="65" rx="10.5" ry="12.5" fill="#c6b4ff"/><ellipse cx="51" cy="65" rx="8.4" ry="10.5" fill="url(#eyeGlow)"/>
+  <ellipse cx="85" cy="65" rx="10.5" ry="12.5" fill="#c6b4ff"/><ellipse cx="85" cy="65" rx="8.4" ry="10.5" fill="url(#eyeGlow)"/>
   <ellipse cx="53" cy="62" rx="3.1" ry="4.1" fill="#fff" opacity=".96"/>
   <circle cx="87" cy="62" r="3.1" fill="#fff" opacity=".96"/>
   <circle cx="47" cy="69" r="1.6" fill="#f5e9ff" opacity=".8"/>
   <circle cx="81" cy="69" r="1.6" fill="#f5e9ff" opacity=".8"/>
-  <ellipse cx="42" cy="78" rx="8" ry="4.2" fill="#eaa6d1" opacity=".55"/>
-  <ellipse cx="94" cy="78" rx="8" ry="4.2" fill="#eaa6d1" opacity=".55"/>
-  <path d="M64 76 Q70 71 76 76 Q75 82 70 82 Q65 81 64 76Z" fill="#e9b2d7"/>
+  <ellipse cx="42" cy="79" rx="9.5" ry="5.5" fill="#f5a8d6" opacity=".82"/>
+  <ellipse cx="94" cy="79" rx="9.5" ry="5.5" fill="#f5a8d6" opacity=".82"/>
+  <path d="M63 76 Q70 69 77 76 Q76 83 70 83 Q64 83 63 76Z" fill="#f3b6df" stroke="#ffe2f5" stroke-width=".8"/>
   <path d="M70 81 Q66 87 62 84 M70 81 Q74 87 78 84" fill="none" stroke="#e9d9ff" stroke-width="2" stroke-linecap="round"/>
   <path d="M40 84 Q32 81 27 77 M40 88 Q32 88 28 91 M100 84 Q108 81 113 77 M100 88 Q108 88 112 91" fill="none" stroke="#b9adcf" stroke-width="1.3" stroke-linecap="round" opacity=".72"/>
   <path d="M56 37 Q70 30 84 37" fill="none" stroke="#9d8ac2" stroke-width="2" stroke-linecap="round" opacity=".45"/>

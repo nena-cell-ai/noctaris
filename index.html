@@ -143,13 +143,17 @@ footer{text-align:center;color:#8583a8;font-size:10px;padding:14px 8px 5px;line-
 .cat-3d.noctaris-kitty{width:148px;height:148px;display:grid;place-items:center;filter:drop-shadow(0 7px 8px rgba(8,5,28,.22));animation:kittyFloat 5s ease-in-out infinite;transform-origin:50% 75%}
 .cat-3d.noctaris-kitty .kitty-art{width:168px;height:168px;overflow:visible;display:block}
 .cat-3d.noctaris-kitty .kitty-tail{transform-box:fill-box;transform-origin:8% 50%;animation:kittyTail 3.4s ease-in-out infinite}
+.cat-3d.noctaris-kitty .kitty-blink{transform-box:fill-box;transform-origin:center;animation:kittyBlink 7s infinite}
+.cat-3d.noctaris-kitty:nth-of-type(2) .kitty-blink{animation-delay:1.4s}
 .cat-3d.noctaris-kitty.petted{animation:kittyHello .55s ease-in-out 3,kittyFloat 5s ease-in-out infinite}
 .cat-3d.noctaris-kitty.petted .kitty-tail{animation-duration:.48s}
 .cat-3d.noctaris-kitty:focus-visible{outline:2px solid #d7c2ff;outline-offset:2px;border-radius:50%}
 .cat-3d.noctaris-kitty.cat-level-2,.cat-3d.noctaris-kitty.cat-level-3,.cat-3d.noctaris-kitty.cat-level-4{filter:drop-shadow(0 0 10px rgba(191,157,255,.32))}
 @keyframes kittyFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-3px) rotate(1deg)}}
 @keyframes kittyTail{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(9deg)}}
+@keyframes kittyBlink{0%,45%,48%,100%{transform:scaleY(1)}46%,47%{transform:scaleY(.08)}}
 @keyframes kittyHello{0%,100%{transform:translateY(0) rotate(0) scale(1)}35%{transform:translateY(-4px) rotate(-3deg) scale(1.025)}70%{transform:translateY(-1px) rotate(3deg) scale(1.015)}}
+@media (prefers-reduced-motion: reduce){.cat-3d.noctaris-kitty,.cat-3d.noctaris-kitty .kitty-tail,.cat-3d.noctaris-kitty .kitty-blink{animation:none!important}}
 
 
 /* Refuerzo de visibilidad: carita luminosa y detalles grandes incluso en móvil */
@@ -188,14 +192,14 @@ footer{text-align:center;color:#8583a8;font-size:10px;padding:14px 8px 5px;line-
 <!-- tiny moon on forehead -->
 <path d="M92 47 C82 47 78 57 83 64 C88 71 98 68 102 61 C94 64 87 58 87 53 C87 50 89 48 92 47Z" fill="#d8c5ff"/>
 <circle cx="76" cy="48" r="1.6" fill="#fff2c9"/><circle cx="105" cy="49" r="1.3" fill="#fff2c9"/>
-<!-- big, gentle kitten eyes -->
-<ellipse cx="66" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
-<ellipse cx="114" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
-<ellipse cx="68" cy="84" rx="7" ry="10.5" fill="#171322"/>
-<ellipse cx="112" cy="84" rx="7" ry="10.5" fill="#171322"/>
-<ellipse cx="62" cy="76" rx="4.4" ry="5.2" fill="#fff"/>
-<ellipse cx="108" cy="76" rx="4.4" ry="5.2" fill="#fff"/>
-<circle cx="73" cy="89" r="2" fill="#fff"/><circle cx="117" cy="89" r="2" fill="#fff"/>
+<!-- big, gentle kitten eyes with a soft, occasional blink -->
+<ellipse class="kitty-blink" cx="66" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
+<ellipse class="kitty-blink" cx="114" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
+<ellipse class="kitty-blink" cx="68" cy="84" rx="7" ry="10.5" fill="#171322"/>
+<ellipse class="kitty-blink" cx="112" cy="84" rx="7" ry="10.5" fill="#171322"/>
+<ellipse class="kitty-blink" cx="62" cy="76" rx="4.4" ry="5.2" fill="#fff"/>
+<ellipse class="kitty-blink" cx="108" cy="76" rx="4.4" ry="5.2" fill="#fff"/>
+<circle class="kitty-blink" cx="73" cy="89" r="2" fill="#fff"/><circle class="kitty-blink" cx="117" cy="89" r="2" fill="#fff"/>
 <!-- rounded muzzle, tiny nose and sweet smile -->
 <ellipse cx="81" cy="102" rx="9" ry="7" fill="#fff9ff"/>
 <ellipse cx="99" cy="102" rx="9" ry="7" fill="#fff9ff"/>
@@ -261,14 +265,14 @@ footer{text-align:center;color:#8583a8;font-size:10px;padding:14px 8px 5px;line-
 <!-- tiny moon on forehead -->
 <path d="M92 47 C82 47 78 57 83 64 C88 71 98 68 102 61 C94 64 87 58 87 53 C87 50 89 48 92 47Z" fill="#d8c5ff"/>
 <circle cx="76" cy="48" r="1.6" fill="#fff2c9"/><circle cx="105" cy="49" r="1.3" fill="#fff2c9"/>
-<!-- big, gentle kitten eyes -->
-<ellipse cx="66" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
-<ellipse cx="114" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
-<ellipse cx="68" cy="84" rx="7" ry="10.5" fill="#171322"/>
-<ellipse cx="112" cy="84" rx="7" ry="10.5" fill="#171322"/>
-<ellipse cx="62" cy="76" rx="4.4" ry="5.2" fill="#fff"/>
-<ellipse cx="108" cy="76" rx="4.4" ry="5.2" fill="#fff"/>
-<circle cx="73" cy="89" r="2" fill="#fff"/><circle cx="117" cy="89" r="2" fill="#fff"/>
+<!-- big, gentle kitten eyes with a soft, occasional blink -->
+<ellipse class="kitty-blink" cx="66" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
+<ellipse class="kitty-blink" cx="114" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
+<ellipse class="kitty-blink" cx="68" cy="84" rx="7" ry="10.5" fill="#171322"/>
+<ellipse class="kitty-blink" cx="112" cy="84" rx="7" ry="10.5" fill="#171322"/>
+<ellipse class="kitty-blink" cx="62" cy="76" rx="4.4" ry="5.2" fill="#fff"/>
+<ellipse class="kitty-blink" cx="108" cy="76" rx="4.4" ry="5.2" fill="#fff"/>
+<circle class="kitty-blink" cx="73" cy="89" r="2" fill="#fff"/><circle class="kitty-blink" cx="117" cy="89" r="2" fill="#fff"/>
 <!-- rounded muzzle, tiny nose and sweet smile -->
 <ellipse cx="81" cy="102" rx="9" ry="7" fill="#fff9ff"/>
 <ellipse cx="99" cy="102" rx="9" ry="7" fill="#fff9ff"/>
@@ -384,14 +388,14 @@ footer{text-align:center;color:#8583a8;font-size:10px;padding:14px 8px 5px;line-
 <!-- tiny moon on forehead -->
 <path d="M92 47 C82 47 78 57 83 64 C88 71 98 68 102 61 C94 64 87 58 87 53 C87 50 89 48 92 47Z" fill="#d8c5ff"/>
 <circle cx="76" cy="48" r="1.6" fill="#fff2c9"/><circle cx="105" cy="49" r="1.3" fill="#fff2c9"/>
-<!-- big, gentle kitten eyes -->
-<ellipse cx="66" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
-<ellipse cx="114" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
-<ellipse cx="68" cy="84" rx="7" ry="10.5" fill="#171322"/>
-<ellipse cx="112" cy="84" rx="7" ry="10.5" fill="#171322"/>
-<ellipse cx="62" cy="76" rx="4.4" ry="5.2" fill="#fff"/>
-<ellipse cx="108" cy="76" rx="4.4" ry="5.2" fill="#fff"/>
-<circle cx="73" cy="89" r="2" fill="#fff"/><circle cx="117" cy="89" r="2" fill="#fff"/>
+<!-- big, gentle kitten eyes with a soft, occasional blink -->
+<ellipse class="kitty-blink" cx="66" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
+<ellipse class="kitty-blink" cx="114" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
+<ellipse class="kitty-blink" cx="68" cy="84" rx="7" ry="10.5" fill="#171322"/>
+<ellipse class="kitty-blink" cx="112" cy="84" rx="7" ry="10.5" fill="#171322"/>
+<ellipse class="kitty-blink" cx="62" cy="76" rx="4.4" ry="5.2" fill="#fff"/>
+<ellipse class="kitty-blink" cx="108" cy="76" rx="4.4" ry="5.2" fill="#fff"/>
+<circle class="kitty-blink" cx="73" cy="89" r="2" fill="#fff"/><circle class="kitty-blink" cx="117" cy="89" r="2" fill="#fff"/>
 <!-- rounded muzzle, tiny nose and sweet smile -->
 <ellipse cx="81" cy="102" rx="9" ry="7" fill="#fff9ff"/>
 <ellipse cx="99" cy="102" rx="9" ry="7" fill="#fff9ff"/>

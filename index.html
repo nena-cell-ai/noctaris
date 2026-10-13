@@ -144,6 +144,11 @@ footer{text-align:center;color:#8583a8;font-size:10px;padding:14px 8px 5px;line-
 .cat-3d.noctaris-kitty .kitty-art{width:168px;height:168px;overflow:visible;display:block}
 .cat-3d.noctaris-kitty .kitty-tail{transform-box:fill-box;transform-origin:8% 50%;animation:kittyTail 3.4s ease-in-out infinite}
 .cat-3d.noctaris-kitty .kitty-blink{transform-box:fill-box;transform-origin:center;animation:kittyBlink 7s infinite}
+.cat-3d.noctaris-kitty .kitty-mood-sparkle{opacity:0;transform-box:fill-box;transform-origin:center}
+.cat-3d.noctaris-kitty.kitty-proud .kitty-mood-sparkle{opacity:1;animation:kittySparkle 1.8s ease-in-out infinite}
+.cat-3d.noctaris-kitty.kitty-proud .kitty-mood-sparkle:nth-of-type(2){animation-delay:.35s}
+.cat-3d.noctaris-kitty.kitty-proud .kitty-cheek{opacity:1;filter:drop-shadow(0 0 2px rgba(255,208,235,.7))}
+.cat-3d.noctaris-kitty.kitty-progress{filter:drop-shadow(0 0 8px rgba(191,157,255,.22))}
 .cat-3d.noctaris-kitty:nth-of-type(2) .kitty-blink{animation-delay:1.4s}
 .cat-3d.noctaris-kitty.petted{animation:kittyHello .55s ease-in-out 3,kittyFloat 5s ease-in-out infinite}
 .cat-3d.noctaris-kitty.petted .kitty-tail{animation-duration:.48s}
@@ -152,8 +157,9 @@ footer{text-align:center;color:#8583a8;font-size:10px;padding:14px 8px 5px;line-
 @keyframes kittyFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-3px) rotate(1deg)}}
 @keyframes kittyTail{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(9deg)}}
 @keyframes kittyBlink{0%,45%,48%,100%{transform:scaleY(1)}46%,47%{transform:scaleY(.08)}}
+@keyframes kittySparkle{0%,100%{transform:scale(.75) rotate(-8deg);opacity:.55}50%{transform:scale(1.08) rotate(8deg);opacity:1}}
 @keyframes kittyHello{0%,100%{transform:translateY(0) rotate(0) scale(1)}35%{transform:translateY(-4px) rotate(-3deg) scale(1.025)}70%{transform:translateY(-1px) rotate(3deg) scale(1.015)}}
-@media (prefers-reduced-motion: reduce){.cat-3d.noctaris-kitty,.cat-3d.noctaris-kitty .kitty-tail,.cat-3d.noctaris-kitty .kitty-blink{animation:none!important}}
+@media (prefers-reduced-motion: reduce){.cat-3d.noctaris-kitty,.cat-3d.noctaris-kitty .kitty-tail,.cat-3d.noctaris-kitty .kitty-blink,.cat-3d.noctaris-kitty .kitty-mood-sparkle{animation:none!important}}
 
 
 /* Refuerzo de visibilidad: carita luminosa y detalles grandes incluso en móvil */
@@ -192,6 +198,9 @@ footer{text-align:center;color:#8583a8;font-size:10px;padding:14px 8px 5px;line-
 <!-- tiny moon on forehead -->
 <path d="M92 47 C82 47 78 57 83 64 C88 71 98 68 102 61 C94 64 87 58 87 53 C87 50 89 48 92 47Z" fill="#d8c5ff"/>
 <circle cx="76" cy="48" r="1.6" fill="#fff2c9"/><circle cx="105" cy="49" r="1.3" fill="#fff2c9"/>
+<!-- tiny celebration sparkles, shown when a bedtime routine is complete -->
+<path class="kitty-mood-sparkle" d="M22 74 L25 81 L32 84 L25 87 L22 94 L19 87 L12 84 L19 81Z" fill="#ffe3a6"/>
+<path class="kitty-mood-sparkle" d="M158 72 L160 77 L165 79 L160 81 L158 86 L156 81 L151 79 L156 77Z" fill="#d8c5ff"/>
 <!-- big, gentle kitten eyes with a soft, occasional blink -->
 <ellipse class="kitty-blink" cx="66" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
 <ellipse class="kitty-blink" cx="114" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
@@ -203,8 +212,8 @@ footer{text-align:center;color:#8583a8;font-size:10px;padding:14px 8px 5px;line-
 <!-- rounded muzzle, tiny nose and sweet smile -->
 <ellipse cx="81" cy="102" rx="9" ry="7" fill="#fff9ff"/>
 <ellipse cx="99" cy="102" rx="9" ry="7" fill="#fff9ff"/>
-<ellipse cx="48" cy="102" rx="9" ry="5.5" fill="#ee9fc8" opacity=".82"/>
-<ellipse cx="132" cy="102" rx="9" ry="5.5" fill="#ee9fc8" opacity=".82"/>
+<ellipse class="kitty-cheek" cx="48" cy="102" rx="9" ry="5.5" fill="#ee9fc8" opacity=".82"/>
+<ellipse class="kitty-cheek" cx="132" cy="102" rx="9" ry="5.5" fill="#ee9fc8" opacity=".82"/>
 <path d="M86 98 Q90 95 94 98 Q94 103 90 103 Q86 103 86 98Z" fill="#e9a8d0"/>
 <path d="M90 103 Q85 109 80 106 M90 103 Q95 109 100 106" fill="none" stroke="#fff9ff" stroke-width="2" stroke-linecap="round"/>
 <!-- short delicate whiskers -->
@@ -265,6 +274,9 @@ footer{text-align:center;color:#8583a8;font-size:10px;padding:14px 8px 5px;line-
 <!-- tiny moon on forehead -->
 <path d="M92 47 C82 47 78 57 83 64 C88 71 98 68 102 61 C94 64 87 58 87 53 C87 50 89 48 92 47Z" fill="#d8c5ff"/>
 <circle cx="76" cy="48" r="1.6" fill="#fff2c9"/><circle cx="105" cy="49" r="1.3" fill="#fff2c9"/>
+<!-- tiny celebration sparkles, shown when a bedtime routine is complete -->
+<path class="kitty-mood-sparkle" d="M22 74 L25 81 L32 84 L25 87 L22 94 L19 87 L12 84 L19 81Z" fill="#ffe3a6"/>
+<path class="kitty-mood-sparkle" d="M158 72 L160 77 L165 79 L160 81 L158 86 L156 81 L151 79 L156 77Z" fill="#d8c5ff"/>
 <!-- big, gentle kitten eyes with a soft, occasional blink -->
 <ellipse class="kitty-blink" cx="66" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
 <ellipse class="kitty-blink" cx="114" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
@@ -276,8 +288,8 @@ footer{text-align:center;color:#8583a8;font-size:10px;padding:14px 8px 5px;line-
 <!-- rounded muzzle, tiny nose and sweet smile -->
 <ellipse cx="81" cy="102" rx="9" ry="7" fill="#fff9ff"/>
 <ellipse cx="99" cy="102" rx="9" ry="7" fill="#fff9ff"/>
-<ellipse cx="48" cy="102" rx="9" ry="5.5" fill="#ee9fc8" opacity=".82"/>
-<ellipse cx="132" cy="102" rx="9" ry="5.5" fill="#ee9fc8" opacity=".82"/>
+<ellipse class="kitty-cheek" cx="48" cy="102" rx="9" ry="5.5" fill="#ee9fc8" opacity=".82"/>
+<ellipse class="kitty-cheek" cx="132" cy="102" rx="9" ry="5.5" fill="#ee9fc8" opacity=".82"/>
 <path d="M86 98 Q90 95 94 98 Q94 103 90 103 Q86 103 86 98Z" fill="#e9a8d0"/>
 <path d="M90 103 Q85 109 80 106 M90 103 Q95 109 100 106" fill="none" stroke="#fff9ff" stroke-width="2" stroke-linecap="round"/>
 <!-- short delicate whiskers -->
@@ -388,6 +400,9 @@ footer{text-align:center;color:#8583a8;font-size:10px;padding:14px 8px 5px;line-
 <!-- tiny moon on forehead -->
 <path d="M92 47 C82 47 78 57 83 64 C88 71 98 68 102 61 C94 64 87 58 87 53 C87 50 89 48 92 47Z" fill="#d8c5ff"/>
 <circle cx="76" cy="48" r="1.6" fill="#fff2c9"/><circle cx="105" cy="49" r="1.3" fill="#fff2c9"/>
+<!-- tiny celebration sparkles, shown when a bedtime routine is complete -->
+<path class="kitty-mood-sparkle" d="M22 74 L25 81 L32 84 L25 87 L22 94 L19 87 L12 84 L19 81Z" fill="#ffe3a6"/>
+<path class="kitty-mood-sparkle" d="M158 72 L160 77 L165 79 L160 81 L158 86 L156 81 L151 79 L156 77Z" fill="#d8c5ff"/>
 <!-- big, gentle kitten eyes with a soft, occasional blink -->
 <ellipse class="kitty-blink" cx="66" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
 <ellipse class="kitty-blink" cx="114" cy="82" rx="14" ry="16.5" fill="#c5a7ff"/>
@@ -399,8 +414,8 @@ footer{text-align:center;color:#8583a8;font-size:10px;padding:14px 8px 5px;line-
 <!-- rounded muzzle, tiny nose and sweet smile -->
 <ellipse cx="81" cy="102" rx="9" ry="7" fill="#fff9ff"/>
 <ellipse cx="99" cy="102" rx="9" ry="7" fill="#fff9ff"/>
-<ellipse cx="48" cy="102" rx="9" ry="5.5" fill="#ee9fc8" opacity=".82"/>
-<ellipse cx="132" cy="102" rx="9" ry="5.5" fill="#ee9fc8" opacity=".82"/>
+<ellipse class="kitty-cheek" cx="48" cy="102" rx="9" ry="5.5" fill="#ee9fc8" opacity=".82"/>
+<ellipse class="kitty-cheek" cx="132" cy="102" rx="9" ry="5.5" fill="#ee9fc8" opacity=".82"/>
 <path d="M86 98 Q90 95 94 98 Q94 103 90 103 Q86 103 86 98Z" fill="#e9a8d0"/>
 <path d="M90 103 Q85 109 80 106 M90 103 Q95 109 100 106" fill="none" stroke="#fff9ff" stroke-width="2" stroke-linecap="round"/>
 <!-- short delicate whiskers -->
@@ -551,10 +566,17 @@ function renderAll(){
  updateCatEvolution();renderRoutine();renderStats();renderCalendar();renderShop();
 }
 function formatDate(key){return new Intl.DateTimeFormat('es-MX',{day:'numeric',month:'long',year:'numeric'}).format(dateFromKey(key))}
+function syncKittyMood(count){
+ document.querySelectorAll('.cat-3d.noctaris-kitty').forEach(function(cat){
+  cat.classList.toggle('kitty-progress',count>0);
+  cat.classList.toggle('kitty-proud',count===4);
+ });
+}
 function renderRoutine(){
  const done=state.routine[todayKey()]||[];
  document.querySelectorAll('.routine-check').forEach(function(c){c.checked=done.includes(c.value)});
  const count=document.querySelectorAll('.routine-check:checked').length;
+ syncKittyMood(count);
  $('routineProgress').textContent=count+' de 4';$('routineBar').style.width=(count/4*100)+'%';
  $('bedtime').value=state.bedtime||'';
  $('bedtimeSaved').textContent=state.bedtime?'Tu intención para hoy: '+state.bedtime+'. Puedes cambiarla cuando quieras.':'Todavía no has guardado una hora objetivo para hoy.';

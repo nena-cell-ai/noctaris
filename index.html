@@ -48,7 +48,7 @@ p{line-height:1.65}
 .hero h1{max-width:400px}
 .hero .muted{font-size:13px;max-width:380px}
 .cat-wrap{width:126px;height:126px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,rgba(179,140,255,.2),rgba(151,115,244,.04) 65%,transparent 70%);border:1px solid rgba(214,194,255,.13)}
-.cat-wrap img{width:110px;height:110px;object-fit:contain;filter:drop-shadow(0 0 18px rgba(192,155,255,.35));animation:float 4.5s ease-in-out infinite}
+.cat-wrap img{width:110px;height:110px;object-fit:contain;filter:drop-shadow(0 0 18px rgba(192,155,255,.35));animation:float 4.5s ease-in-out infinite;transition:filter .4s,transform .4s}.cat-wrap img.cat-level-2{filter:drop-shadow(0 0 22px rgba(198,163,255,.75)) hue-rotate(7deg)}.cat-wrap img.cat-level-3{filter:drop-shadow(0 0 28px rgba(225,192,255,.9)) saturate(1.2) hue-rotate(15deg);transform:scale(1.06)}.cat-wrap img.cat-level-4{filter:drop-shadow(0 0 34px rgba(255,221,255,1)) saturate(1.35) hue-rotate(24deg);transform:scale(1.1)}.room-scene{position:relative;overflow:hidden;min-height:250px;border-radius:22px;border:1px solid rgba(222,204,255,.2);background:radial-gradient(ellipse at 50% 10%,rgba(135,104,218,.28),transparent 48%),linear-gradient(180deg,#17153e 0%,#28204e 68%,#44365d 68%,#29223f 100%);display:flex;align-items:flex-end;justify-content:center;padding:18px 12px 12px}.room-window{position:absolute;top:18px;left:50%;transform:translateX(-50%);width:94px;height:105px;border:3px solid rgba(210,192,255,.5);border-radius:50px 50px 18px 18px;background:linear-gradient(180deg,#080d30,#35336c);box-shadow:0 0 24px rgba(171,142,255,.22)}.room-window:before{content:"☾";position:absolute;top:10px;right:14px;font-size:25px;color:#fff0bb}.room-window:after{content:"✦  ·  ✧";position:absolute;top:52px;left:12px;color:#d8c7ff;font-size:13px}.room-floor{position:absolute;left:0;right:0;bottom:0;height:31%;background:linear-gradient(180deg,rgba(180,146,224,.15),rgba(14,13,40,.35));border-top:1px solid rgba(255,255,255,.08)}.room-cat{position:relative;z-index:2;margin-bottom:10px}.room-cat .cat-wrap{width:120px;height:120px;background:radial-gradient(circle,rgba(197,164,255,.25),transparent 70%)}.room-prop{position:absolute;z-index:3;font-size:29px;filter:drop-shadow(0 0 10px rgba(225,203,255,.35));animation:float 4s ease-in-out infinite}.room-prop.p1{left:14%;bottom:24%}.room-prop.p2{right:13%;bottom:25%;animation-delay:-1.3s}.room-prop.p3{right:17%;top:18%;font-size:20px}.room-caption{position:relative;z-index:4;margin:0;text-align:center;font-size:10px;color:#eee5ff;background:rgba(9,10,35,.5);padding:5px 10px;border-radius:99px}.decor-choice{display:flex;align-items:center;gap:10px;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)}.decor-choice:last-child{border-bottom:0}.decor-choice .helper{margin:3px 0 0}.decor-choice button{flex-shrink:0}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .button{border:0;border-radius:15px;padding:13px 17px;color:#fff;background:linear-gradient(110deg,#7f62e8,#b17bf2);box-shadow:0 8px 22px rgba(130,95,224,.2);font-weight:600;font-size:13px;transition:transform .2s,filter .2s}
 .button:hover{transform:translateY(-1px);filter:brightness(1.08)}
@@ -197,6 +197,7 @@ footer{text-align:center;color:#8583a8;font-size:10px;padding:14px 8px 5px;line-
     <p class="helper" style="margin-top:14px">La lista se reinicia cada día; puedes retomarla cuando quieras.</p>
   </div>
   <div class="panel soft"><div class="eyebrow">Hora de descanso</div><h2>¿A qué hora te gustaría acostarte?</h2><p class="intro">Este es tu plan, no una obligación. Puedes ajustarlo cada día.</p><div class="field"><label for="bedtime">Mi hora objetivo</label><input id="bedtime" type="time"></div><button class="button full" id="saveBedtimeBtn">Guardar mi intención 🌙</button><p class="helper" id="bedtimeSaved" style="margin:10px 0 0"></p></div>
+  <div class="panel"><div class="eyebrow">Un pequeño cierre</div><h2>Registrar mi noche ✨</h2><p class="intro">No necesitas haber cumplido toda la rutina. Registrar es simplemente darte un momento para observar tu descanso.</p><button class="button full" id="saveNightBtn">Guardar mi registro de hoy · +10 estrellas</button><p class="helper" style="margin:10px 0 0">Solo se otorgan estrellas una vez por fecha. Puedes actualizar el registro de hoy sin perder tu progreso.</p></div>
   <div class="panel"><div class="eyebrow">Un consejo para ti</div><h3 id="routineTipTitle">La constancia se construye con flexibilidad.</h3><p id="routineTip" class="intro" style="margin-bottom:0">Si una noche no sale como esperabas, no has perdido tu progreso. Puedes volver a intentarlo mañana.</p></div>
 </section>
 
@@ -245,6 +246,7 @@ footer{text-align:center;color:#8583a8;font-size:10px;padding:14px 8px 5px;line-
 <section id="collection" class="screen">
   <div class="eyebrow">Pequeños tesoros</div><h1>La tienda lunar.</h1><p class="intro">Tus estrellas se ganan registrando una noche por fecha. Elige objetos para tu compañera lunar y colecciona tus favoritos.</p>
   <div class="panel soft"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div><div class="eyebrow">Tu monedero</div><h2 id="shopStars" style="margin:0">0 ✦</h2></div><div style="font-size:30px">💎</div></div></div>
+  <div class="panel"><div class="eyebrow">Tu rinconcito secreto</div><h2>Mi habitación lunar ✨</h2><p class="intro">Un espacio pequeñito que puedes decorar con los tesoros que desbloquees. Tu gatita también evoluciona conforme registras tus noches.</p><div class="room-scene"><div class="room-window"></div><div class="room-floor"></div><span class="room-prop p1" id="roomProp1">☁️</span><span class="room-prop p2" id="roomProp2">🪴</span><span class="room-prop p3" id="roomProp3">✦</span><div class="room-cat"><div class="cat-wrap"><img src="gatita.png" alt="Tu gatita lunar en su habitación" id="roomCat"></div><p class="room-caption" id="roomCatCaption">Gatita soñadora · nivel 1</p></div></div><p class="helper" id="roomProgress" style="margin:12px 0 0">Cada noche registrada es una pequeña semilla de crecimiento. 🌱</p><div id="roomDecorControls" style="margin-top:12px"></div></div>
   <div class="list" id="shopList"></div>
   <div class="panel"><h2>Mis tesoros</h2><p class="intro">Lo que has desbloqueado hasta ahora.</p><div id="inventoryList" class="list"></div></div>
 </section>
@@ -313,7 +315,11 @@ const shopItems=[
  {id:'bow',name:'Moño de aurora',desc:'Un detalle suave para tu gatita lunar.',icon:'🎀',cost:100},
  {id:'halo',name:'Halo de luna',desc:'Un brillo delicado para acompañar tus sueños.',icon:'🌙',cost:200},
  {id:'crown',name:'Corona Noctaris',desc:'Un tesoro especial para tu compañera.',icon:'👑',cost:500},
- {id:'star',name:'Estrella fugaz',desc:'Un pequeño destello para su rincón.',icon:'🌠',cost:300}
+ {id:'star',name:'Estrella fugaz',desc:'Un pequeño destello para su rincón.',icon:'🌠',cost:300},
+ {id:'cloud-rug',name:'Alfombra de nube',desc:'Una nube mullidita para la habitación lunar.',icon:'☁️',cost:120,type:'decor'},
+ {id:'star-lamp',name:'Lámpara estelar',desc:'Una luz imaginaria y cálida para el rincón.',icon:'🪔',cost:180,type:'decor'},
+ {id:'moon-window',name:'Ventana de luna',desc:'Una luna extra para mirar desde la habitación.',icon:'🌙',cost:220,type:'decor'},
+ {id:'plant',name:'Plantita de sueños',desc:'Un toque de vida para su refugio.',icon:'🪴',cost:150,type:'decor'}
 ];
 const phrases=[
 'No tienes que ganarte el descanso. También lo mereces en los días difíciles.',
@@ -336,6 +342,8 @@ function bestStreak(){
  dates.forEach(function(key){const d=dateFromKey(key);if(prev){const gap=Math.round((d-prev)/86400000);run=gap===1?run+1:1}else run=1;best=Math.max(best,run);prev=d});return best
 }
 function levelInfo(){const n=uniqueDates().length;if(n>=30)return {level:4,name:'Guardiana de constelaciones'};if(n>=14)return {level:3,name:'Exploradora lunar'};if(n>=7)return {level:2,name:'Cuidadora de sueños'};return {level:1,name:'Gatita soñadora'}}
+function updateCatEvolution(){const level=levelInfo();['homeCat','roomCat'].forEach(function(id){const img=$(id);if(!img)return;img.classList.remove('cat-level-2','cat-level-3','cat-level-4');if(level.level>1)img.classList.add('cat-level-'+level.level)});$('roomCatCaption').textContent=(state.pet||'Gatita lunar')+' · '+level.name+' · nivel '+level.level;$('roomProgress').textContent='Llevas '+uniqueDates().length+' '+(uniqueDates().length===1?'noche registrada':'noches registradas')+'. Cada registro ayuda a tu compañera a brillar un poquito más, sin prisa. ✨';renderRoomDecor();}
+function renderRoomDecor(){const props=[{id:'cloud-rug',el:'roomProp1',fallback:'☁️'},{id:'plant',el:'roomProp2',fallback:'🪴'},{id:'star-lamp',el:'roomProp3',fallback:'✦'}];props.forEach(function(p){const item=shopItems.find(function(x){return x.id===p.id});const owned=state.inventory.some(function(x){return (typeof x==='string'?x:x.id)===p.id});$(p.el).textContent=owned?item.icon:p.fallback;$(p.el).style.opacity=owned?'1':'.45'});const windowItem=state.inventory.some(function(x){return (typeof x==='string'?x:x.id)==='moon-window'});$('roomDecorControls').innerHTML='<div class="helper">Decoraciones desbloqueadas: '+shopItems.filter(function(i){return i.type==='decor'&&state.inventory.some(function(x){return (typeof x==='string'?x:x.id)===i.id})}).length+' de 4. Compra tesoros abajo para transformar tu habitación.</div>'+(windowItem?'<div class="decor-choice"><span>🌙 Ventana de luna colocada</span><span class="pill">En tu rincón</span></div>':'');}
 function go(id){
  if(!screens.includes(id))return;
  screens.forEach(function(s){$(s).classList.toggle('active',s===id)});
@@ -376,7 +384,7 @@ function renderAll(){
  const dates=state.records.slice().sort(function(a,b){return b.date.localeCompare(a.date)});
  $('lastRecord').innerHTML=dates.length?'<div class="list-row"><div class="list-icon">🌙</div><div><strong>'+esc(formatDate(dates[0].date))+'</strong><p>'+(dates[0].time?'Hora objetivo: '+esc(dates[0].time):'Registro de descanso')+'</p></div></div>':'<div class="empty">Todavía no hay registros. Puedes comenzar esta noche. 💜</div>';
  $('shopStars').textContent=state.stars+' ✦';
- renderRoutine();renderStats();renderCalendar();renderShop();
+ updateCatEvolution();renderRoutine();renderStats();renderCalendar();renderShop();
 }
 function formatDate(key){return new Intl.DateTimeFormat('es-MX',{day:'numeric',month:'long',year:'numeric'}).format(dateFromKey(key))}
 function renderRoutine(){
@@ -458,6 +466,7 @@ $('skipDiagnosticBtn').addEventListener('click',function(){state.diagnostic=stat
 document.querySelectorAll('[data-screen]').forEach(function(b){b.addEventListener('click',function(){go(b.dataset.screen)})});
 document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){go(b.dataset.go)})});
 $('saveBedtimeBtn').addEventListener('click',function(){state.bedtime=$('bedtime').value;save();$('bedtimeSaved').textContent=state.bedtime?'Tu intención para hoy: '+state.bedtime+'. Puedes cambiarla cuando quieras.':'Elige una hora para guardar tu intención.';});
+$('saveNightBtn').addEventListener('click',saveRecord);
 document.querySelectorAll('.routine-check').forEach(function(c){c.addEventListener('change',function(){resetRoutineIfNeeded();const arr=state.routine[todayKey()];if(c.checked&&!arr.includes(c.value))arr.push(c.value);if(!c.checked)state.routine[todayKey()]=arr.filter(function(x){return x!==c.value});save();renderRoutine()})});
 $('breathStartBtn').addEventListener('click',startBreathing);
 $('breathStopBtn').addEventListener('click',function(){stopBreathing(false)});

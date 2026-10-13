@@ -1,1186 +1,482 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Noctaris 🌙</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090b25">
+<meta name="description" content="Noctaris: tu refugio lunar para construir hábitos de descanso con calma.">
+<title>Noctaris · Tu refugio lunar</title>
 <link rel="manifest" href="manifest.json">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-
-select{
-
-width:100%;
-
-padding:15px;
-
-margin-top:12px;
-
-border:none;
-
-border-radius:18px;
-
-background:rgba(255,255,255,.1);
-
-color:white;
-
-font-size:16px;
-
-outline:none;
-}
-
-option{
-
-background:#10194a;
-
-color:white;
-}
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-transition:0.3s;
-}
-
-body{
-
-background:
-linear-gradient(
-180deg,
-#05071e,
-#0c1238,
-#10194a
-);
-
-color:white;
-
-min-height:100vh;
-
-padding:20px 20px 120px;
-
-overflow-x:hidden;
-}
-
-/* ESTRELLAS */
-
-.stars,
-.stars2{
-
-position:fixed;
-
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-pointer-events:none;
-
-z-index:-3;
-}
-
-.stars::after{
-
-content:"";
-
-position:absolute;
-
-width:2px;
-height:2px;
-
-background:white;
-
-box-shadow:
-100px 100px white,
-250px 200px white,
-400px 80px white,
-600px 250px white,
-800px 120px white,
-1000px 400px white,
-1200px 250px white;
-
-animation:parpadeo 4s infinite alternate;
-}
-
-.stars2::after{
-
-content:"";
-
-position:absolute;
-
-width:3px;
-height:3px;
-
-background:#c084fc;
-
-box-shadow:
-200px 300px #c084fc,
-500px 150px #c084fc,
-900px 350px #c084fc,
-1100px 180px #c084fc;
-
-animation:parpadeo 6s infinite alternate;
-}
-
-@keyframes parpadeo{
-
-0%{
-opacity:.3;
-}
-
-100%{
-opacity:1;
-}
-
-}
-
-/* GLOW */
-
-.glow{
-
-position:fixed;
-
-top:-150px;
-right:-150px;
-
-width:350px;
-height:350px;
-
-background:
-radial-gradient(
-circle,
-rgba(168,85,247,.5),
-transparent 70%
-);
-
-filter:blur(40px);
-
-z-index:-2;
-}
-
-/* TITULOS */
-
-h1{
-
-font-size:42px;
-
-font-weight:600;
-
-margin-bottom:5px;
-
-text-shadow:
-0 0 20px rgba(192,132,252,.5);
-}
-
-.sub{
-
-color:#d8b4fe;
-
-margin-bottom:20px;
-}
-
-/* PANTALLAS */
-
-.pantalla{
-
-display:none;
-}
-
-.activa{
-
-display:block;
-}
-
-/* TARJETAS */
-
-.card{
-
-background:
-rgba(255,255,255,.08);
-
-backdrop-filter:
-blur(18px);
-
-border:
-1px solid rgba(255,255,255,.1);
-
-border-radius:30px;
-
-padding:24px;
-
-margin-top:20px;
-
-box-shadow:
-0 8px 32px rgba(0,0,0,.35),
-0 0 20px rgba(168,85,247,.15);
-
-text-align:center;
-}
-
-/* GATITA */
-
-#mascota{
-
-width:230px;
-
-animation:
-flotar 4s ease-in-out infinite;
-
-filter:
-drop-shadow(
-0 0 25px rgba(192,132,252,.5)
-);
-}
-
-@keyframes flotar{
-
-0%{
-transform:translateY(0px);
-}
-
-50%{
-transform:translateY(-10px);
-}
-
-100%{
-transform:translateY(0px);
-}
-
-}
-
-#estadoMascota{
-
-margin-top:10px;
-
-font-size:22px;
-
-font-weight:600;
-
-color:#f5d0fe;
-}
-
-/* FRASES */
-
-#frase{
-
-margin-top:15px;
-
-font-style:italic;
-
-color:#ddd6fe;
-}
-
-/* INPUT */
-
-input{
-
-width:100%;
-
-padding:15px;
-
-border:none;
-
-outline:none;
-
-border-radius:18px;
-
-margin-top:15px;
-
-background:
-rgba(255,255,255,.1);
-
-color:white;
-
-font-size:17px;
-}
-
-/* BOTONES */
-
-button{
-
-width:100%;
-
-padding:15px;
-
-margin-top:15px;
-
-border:none;
-
-border-radius:20px;
-
-background:
-linear-gradient(
-90deg,
-#8b5cf6,
-#c084fc
-);
-
-color:white;
-
-font-size:16px;
-
-font-weight:600;
-
-cursor:pointer;
-
-box-shadow:
-0 4px 20px rgba(168,85,247,.35);
-}
-
-button:hover{
-
-transform:translateY(-2px);
-}
-
-/* MONEDAS */
-
-#coins{
-
-margin-top:15px;
-
-font-size:22px;
-
-font-weight:600;
-
-color:#f5d0fe;
-}
-
-/* CALENDARIO */
-
-#diasCalendario{
-
-display:grid;
-
-grid-template-columns:
-repeat(7,1fr);
-
-gap:8px;
-
-margin-top:20px;
-}
-
-.dia{
-
-padding:10px;
-
-border-radius:12px;
-
-background:
-rgba(255,255,255,.08);
-
-text-align:center;
-}
-
-.registrado{
-
-background:#8b5cf6;
-}
-
-/* NAVBAR */
-
-.navbar{
-
-position:fixed;
-
-bottom:15px;
-
-left:50%;
-
-transform:translateX(-50%);
-
-width:92%;
-
-display:flex;
-
-justify-content:space-around;
-
-align-items:center;
-
-padding:15px;
-
-border-radius:30px;
-
-background:
-rgba(18,18,40,.8);
-
-backdrop-filter:
-blur(20px);
-
-border:
-1px solid rgba(255,255,255,.1);
-
-box-shadow:
-0 8px 30px rgba(0,0,0,.4);
-}
-
-.navitem{
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-font-size:20px;
-
-color:#d8b4fe;
-
-cursor:pointer;
-}
-
-.navitem p{
-
-font-size:11px;
-
-margin-top:3px;
-}
-
-.active{
-
-color:white;
-}
-
-/* INVENTARIO */
-
-#inventario{
-
-margin-top:15px;
-
-line-height:1.8;
-}
-
-/* LOGROS */
-
-#logros{
-
-margin-top:15px;
-
-line-height:2;
-}
-
+:root{color-scheme:dark;--bg:#080a22;--panel:rgba(24,27,66,.72);--panel2:rgba(36,34,82,.68);--line:rgba(220,210,255,.13);--text:#f7f3ff;--muted:#b9b6d8;--lilac:#c7a6ff;--purple:#9670f5;--pink:#efc4ff;--gold:#ffe3a6;--mint:#b6f3df;--shadow:0 18px 55px rgba(0,0,0,.26)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 0%,rgba(103,77,174,.28),transparent 34%),radial-gradient(ellipse at 95% 25%,rgba(75,85,170,.2),transparent 30%),linear-gradient(165deg,#07091f,#101438 58%,#171638);color:var(--text);font-family:'Poppins',system-ui,sans-serif;padding:22px 16px calc(108px + env(safe-area-inset-bottom));overflow-x:hidden}
+body:before,body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1}
+body:before{opacity:.5;background-image:radial-gradient(1px 1px at 8% 15%,#fff 98%,transparent),radial-gradient(1px 1px at 23% 64%,#d8c5ff 98%,transparent),radial-gradient(1.5px 1.5px at 73% 22%,#fff 98%,transparent),radial-gradient(1px 1px at 89% 76%,#d8c5ff 98%,transparent),radial-gradient(1px 1px at 48% 42%,#fff 98%,transparent),radial-gradient(1px 1px at 62% 88%,#fff 98%,transparent);background-size:330px 290px}
+body:after{background:radial-gradient(circle at 50% 20%,rgba(163,119,255,.07),transparent 38%)}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
+button:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.app{width:min(100%,760px);margin:0 auto}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:2px 2px 24px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand-mark{width:44px;height:44px;display:grid;place-items:center;border:1px solid rgba(222,204,255,.25);border-radius:16px;background:linear-gradient(145deg,rgba(166,124,255,.25),rgba(255,255,255,.04));box-shadow:0 0 28px rgba(164,120,255,.15);font-size:24px}
+.brand-name{font-size:18px;letter-spacing:.19em;font-weight:600}
+.brand-tag{font-size:10px;color:var(--muted);letter-spacing:.13em;text-transform:uppercase}
+.date-chip{border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:999px;padding:8px 12px;font-size:11px;color:var(--muted);white-space:nowrap}
+.screen{display:none;animation:appear .28s ease}
+.screen.active{display:block}
+@keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+h1,h2,h3,p{margin-top:0}
+h1{font-size:clamp(27px,6vw,39px);line-height:1.16;letter-spacing:-.04em;margin-bottom:9px}
+h2{font-size:22px;letter-spacing:-.025em;margin-bottom:8px}
+h3{font-size:15px;font-weight:500;margin-bottom:9px}
+p{line-height:1.65}
+.muted{color:var(--muted)}
+.eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--lilac);font-weight:600;margin-bottom:10px}
+.intro{color:var(--muted);font-size:13px;margin-bottom:20px}
+.panel{background:linear-gradient(145deg,rgba(31,34,77,.83),rgba(18,21,54,.79));border:1px solid var(--line);border-radius:26px;padding:22px;margin:15px 0;box-shadow:var(--shadow);backdrop-filter:blur(16px)}
+.panel.soft{background:linear-gradient(145deg,rgba(79,60,126,.3),rgba(23,26,63,.65))}
+.hero{position:relative;overflow:hidden;padding:25px 22px 23px;background:radial-gradient(ellipse at 85% 20%,rgba(169,127,255,.22),transparent 38%),linear-gradient(145deg,rgba(45,40,98,.82),rgba(16,20,52,.9))}
+.hero:after{content:"✦  ·  ✧";position:absolute;right:17px;top:17px;color:rgba(231,214,255,.62);letter-spacing:12px;font-size:12px}
+.hero-grid{display:grid;grid-template-columns:1fr 130px;align-items:center;gap:8px}
+.hero h1{max-width:400px}
+.hero .muted{font-size:13px;max-width:380px}
+.cat-wrap{width:126px;height:126px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,rgba(179,140,255,.2),rgba(151,115,244,.04) 65%,transparent 70%);border:1px solid rgba(214,194,255,.13)}
+.cat-wrap img{width:110px;height:110px;object-fit:contain;filter:drop-shadow(0 0 18px rgba(192,155,255,.35));animation:float 4.5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.button{border:0;border-radius:15px;padding:13px 17px;color:#fff;background:linear-gradient(110deg,#7f62e8,#b17bf2);box-shadow:0 8px 22px rgba(130,95,224,.2);font-weight:600;font-size:13px;transition:transform .2s,filter .2s}
+.button:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.button.secondary{background:rgba(255,255,255,.065);border:1px solid var(--line);box-shadow:none;color:#e9e0ff}
+.button.ghost{background:transparent;border:1px solid var(--line);box-shadow:none;color:var(--muted)}
+.button.danger{background:rgba(199,92,132,.15);border:1px solid rgba(255,140,177,.25);box-shadow:none;color:#ffd8e5}
+.button.full{width:100%;margin-top:12px}
+.button.small{padding:9px 12px;font-size:11px;border-radius:12px}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}
+.actions .button{flex:1}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.stat{padding:16px;border:1px solid var(--line);border-radius:19px;background:rgba(255,255,255,.035)}
+.stat .num{font-size:25px;font-weight:600;letter-spacing:-.04em;margin:6px 0 1px}
+.stat .label{font-size:11px;color:var(--muted)}
+.stat .emoji{font-size:17px}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:23px 2px 8px}
+.section-head h2{font-size:17px;margin:0}
+.link-button{background:none;border:0;color:var(--lilac);font-size:11px;padding:6px}
+.field{margin:14px 0}
+.field label{display:block;font-size:12px;color:#e8e1ff;margin-bottom:8px}
+input,select{width:100%;padding:13px 14px;border:1px solid rgba(220,210,255,.16);border-radius:14px;background:rgba(7,10,34,.6);color:var(--text);min-height:48px}
+input::placeholder{color:#8583aa}
+select option{background:#17183f;color:white}
+.helper{font-size:11px;color:var(--muted);line-height:1.6}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);font-size:10px;color:#e8ddff}
+.callout{border-left:2px solid var(--lilac);padding:11px 13px;background:rgba(184,151,255,.07);border-radius:0 13px 13px 0;font-size:12px;line-height:1.65;color:#e6dcff}
+.notice{font-size:12px;padding:12px 13px;border:1px solid rgba(182,243,223,.16);background:rgba(87,177,148,.08);border-radius:14px;color:#d4f7ea;line-height:1.6}
+.list{display:grid;gap:10px}
+.list-row{display:flex;gap:12px;align-items:flex-start;padding:13px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+.list-icon{flex:0 0 38px;height:38px;border-radius:13px;display:grid;place-items:center;background:rgba(168,134,255,.13);font-size:18px}
+.list-row strong{display:block;font-size:12px;margin-bottom:3px}
+.list-row p{font-size:11px;color:var(--muted);margin:0;line-height:1.55}
+.empty{padding:23px 12px;text-align:center;color:var(--muted);font-size:12px}
+.navbar{position:fixed;z-index:10;left:50%;bottom:calc(10px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(calc(100% - 20px),740px);display:flex;gap:3px;justify-content:space-between;padding:8px;border-radius:23px;border:1px solid rgba(221,211,255,.17);background:rgba(13,15,42,.88);backdrop-filter:blur(22px);box-shadow:0 12px 38px rgba(0,0,0,.4);overflow-x:auto;scrollbar-width:none}
+.navbar::-webkit-scrollbar{display:none}
+.navitem{flex:1;min-width:52px;border:0;background:transparent;color:#aaa6ce;padding:8px 5px;border-radius:15px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:18px}
+.navitem span{font-size:9px;white-space:nowrap}
+.navitem.active{color:#fff;background:linear-gradient(145deg,rgba(151,112,245,.3),rgba(176,130,255,.09));box-shadow:inset 0 0 0 1px rgba(212,192,255,.1)}
+.breath-orb{width:190px;height:190px;border-radius:50%;margin:20px auto;display:grid;place-items:center;background:radial-gradient(circle,rgba(187,157,255,.26),rgba(143,106,237,.1) 52%,transparent 72%);border:1px solid rgba(220,200,255,.17);box-shadow:0 0 60px rgba(135,102,231,.13);transition:transform 4s ease-in-out}
+.breath-orb.inhale{transform:scale(1.13)}
+.breath-orb.hold{transform:scale(1.13)}
+.breath-orb.exhale{transform:scale(.87)}
+.breath-inner{width:116px;height:116px;border-radius:50%;border:1px solid rgba(222,209,255,.35);display:grid;place-items:center;text-align:center;background:rgba(163,133,244,.1);padding:10px}
+#breathPhase{font-size:17px;font-weight:500}
+#breathCount{font-size:11px;color:var(--muted)}
+.timer{font-size:30px;font-weight:500;text-align:center;font-variant-numeric:tabular-nums}
+.calendar-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:16px 0}
+.calendar-head button{width:36px;height:36px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:white;font-size:17px}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+.calendar-weekday{text-align:center;color:var(--muted);font-size:10px;padding:6px 0}
+.calendar-day{aspect-ratio:1;border-radius:11px;border:1px solid transparent;background:rgba(255,255,255,.035);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;color:#d9d4ef;gap:2px}
+.calendar-day.blank{background:transparent}
+.calendar-day.today{border-color:rgba(214,191,255,.6)}
+.calendar-day.logged{background:rgba(150,112,245,.32);border-color:rgba(199,166,255,.35);color:white}
+.calendar-day .dot{width:4px;height:4px;border-radius:50%;background:var(--pink)}
+.item{padding:15px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.035);display:flex;align-items:center;gap:12px}
+.item-icon{width:43px;height:43px;display:grid;place-items:center;background:rgba(172,141,255,.12);border-radius:14px;font-size:23px;flex-shrink:0}
+.item-main{flex:1;min-width:0}
+.item-main strong{font-size:12px;display:block}
+.item-main p{font-size:10px;color:var(--muted);margin:3px 0 0}
+.item .button{flex-shrink:0}
+.progress{height:7px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;margin:11px 0}
+.progress span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#8e71f3,#e2baff);width:0;transition:width .3s}
+footer{text-align:center;color:#8583a8;font-size:10px;padding:14px 8px 5px;line-height:1.7}
+[hidden]{display:none!important}
+@media(max-width:430px){body{padding:16px 12px calc(105px + env(safe-area-inset-bottom))}.panel{padding:18px;border-radius:23px}.hero{padding:21px 17px}.hero-grid{grid-template-columns:1fr 94px;gap:4px}.cat-wrap{width:92px;height:92px}.cat-wrap img{width:82px;height:82px}.hero h1{font-size:28px}.brand-name{font-size:16px}.date-chip{font-size:9px;padding:7px 9px}.grid2{gap:9px}.stat{padding:13px}.stat .num{font-size:22px}.navbar{padding:6px}.navitem{min-width:48px;padding:7px 3px}.navitem span{font-size:8px}.breath-orb{width:172px;height:172px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
-
 </head>
-
 <body>
+<div class="app">
+<header class="topbar">
+  <div class="brand"><div class="brand-mark">☾</div><div><div class="brand-name">NOCTARIS</div><div class="brand-tag">tu refugio lunar</div></div></div>
+  <div class="date-chip" id="todayChip">✦ Una noche a la vez</div>
+</header>
 
-<div class="stars"></div>
-<div class="stars2"></div>
-<div class="glow"></div>
-
-
-<!-- BIENVENIDA -->
-
-<section id="bienvenida" class="pantalla activa">
-
-<div class="card">
-
-<h1>🌙 Bienvenido a Noctaris</h1>
-
-<p class="sub">
-Tu refugio nocturno comienza aquí ✨
-</p>
-
-<h3>
-¿Cómo te gustaría que te llame?
-</h3>
-
-<input
-type="text"
-id="nombreUsuario"
-placeholder="Ej. Nena">
-
-<h3 style="margin-top:20px;">
-🐈‍⬛ ¿Cómo se llamará tu compañera lunar?
-</h3>
-
-<input
-type="text"
-id="nombreMascota"
-placeholder="Ej. Nova">
-
-<button onclick="guardarPerfil()">
-Comenzar aventura ✨
-</button>
-
-</div>
-
+<section id="welcome" class="screen active">
+  <div class="panel hero">
+    <div class="eyebrow">Dreamkeeper edition</div>
+    <h1>Un lugar tranquilo<br>para volver a ti.</h1>
+    <p class="muted">Pequeños hábitos, noches más conscientes y una compañera lunar que te acompaña sin exigirte perfección.</p>
+    <div class="cat-wrap" style="margin:20px auto 4px"><img src="gatita.png" alt="Gatita lunar de Noctaris"></div>
+  </div>
+  <div class="panel">
+    <div class="eyebrow">Antes de comenzar</div>
+    <h2>¿Cómo te llamamos? ✨</h2>
+    <p class="intro">Personaliza tu pequeño rincón nocturno. Tus datos se guardan en este dispositivo.</p>
+    <div class="field"><label for="profileName">Tu nombre o apodo</label><input id="profileName" maxlength="32" autocomplete="nickname" placeholder="Ej. Nena"></div>
+    <div class="field"><label for="petName">Nombre de tu compañera lunar</label><input id="petName" maxlength="24" placeholder="Ej. Nova"></div>
+    <button class="button full" id="beginBtn">Entrar a mi refugio ✦</button>
+    <p class="helper" style="margin:13px 0 0">Noctaris acompaña la creación de hábitos; no sustituye atención médica o psicológica.</p>
+  </div>
 </section>
 
-<!-- DIAGNÓSTICO INICIAL -->
-
-<section id="diagnostico" class="pantalla">
-
-<div class="card">
-
-<h1>🌙 Diagnóstico Inicial</h1>
-
-<p class="sub">
-Ayúdanos a conocer tus hábitos de descanso ✨
-</p>
-
-
-<h3>
-😴 ¿Cuántas horas duermes normalmente?
-</h3>
-
-<select id="pregunta1">
-
-<option value="">Selecciona una opción</option>
-
-<option>Menos de 4 horas</option>
-
-<option>4 a 5 horas</option>
-
-<option>6 a 7 horas</option>
-
-<option>8 horas o más</option>
-
-</select>
-
-<!-- PREGUNTA 2 -->
-
-<h3 style="margin-top:20px;">
-📱 ¿Usas el teléfono antes de dormir?
-</h3>
-
-<select id="pregunta2">
-
-<option value="">Selecciona una opción</option>
-
-<option>Siempre</option>
-
-<option>Casi siempre</option>
-
-<option>A veces</option>
-
-<option>Nunca</option>
-
-</select>
-
-<!-- PREGUNTA 3 -->
-
-<h3 style="margin-top:20px;">
-😥 ¿Cómo describirías tu nivel de estrés?
-</h3>
-
-<select id="pregunta3">
-
-<option value="">Selecciona una opción</option>
-
-<option>Muy alto</option>
-
-<option>Alto</option>
-
-<option>Moderado</option>
-
-<option>Bajo</option>
-
-</select>
-
-<!-- PREGUNTA 4 -->
-
-<h3 style="margin-top:20px;">
-☕ ¿Consumes cafeína por la noche?
-</h3>
-
-<select id="pregunta4">
-
-<option value="">Selecciona una opción</option>
-
-<option>Todos los días</option>
-
-<option>Varias veces por semana</option>
-
-<option>Ocasionalmente</option>
-
-<option>Nunca</option>
-
-</select>
-
-<!-- PREGUNTA 5 -->
-
-<h3 style="margin-top:20px;">
-🌙 ¿Tienes una rutina fija para dormir?
-</h3>
-
-<select id="pregunta5">
-
-<option value="">Selecciona una opción</option>
-
-<option>Sí, siempre</option>
-
-<option>La mayoría de los días</option>
-
-<option>A veces</option>
-
-<option>No</option>
-
-</select>
-  
-<button onclick="guardarDiagnostico()">
-✨ Ver mi resultado
-</button>
-
-</div>
-
+<section id="diagnostic" class="screen">
+  <div class="eyebrow">Tu punto de partida · 1 de 1</div>
+  <h1>Conozcamos tus noches.</h1>
+  <p class="intro">No hay respuestas buenas o malas. Esto nos ayuda a sugerirte pasos pequeños y realistas.</p>
+  <div class="panel">
+    <div class="field"><label for="qSleep">😴 En una noche habitual, ¿cuánto duermes?</label><select id="qSleep"><option value="">Elige una opción</option><option value="lt4">Menos de 4 horas</option><option value="4to5">Entre 4 y 5 horas</option><option value="6to7">Entre 6 y 7 horas</option><option value="8plus">8 horas o más</option></select></div>
+    <div class="field"><label for="qPhone">📱 ¿Usas el teléfono justo antes de dormir?</label><select id="qPhone"><option value="">Elige una opción</option><option value="always">Casi siempre</option><option value="sometimes">A veces</option><option value="rarely">Casi nunca o nunca</option></select></div>
+    <div class="field"><label for="qStress">🌧️ ¿Cómo has sentido tu estrés últimamente?</label><select id="qStress"><option value="">Elige una opción</option><option value="high">Muy alto</option><option value="medium">Moderado</option><option value="low">Bajo</option></select></div>
+    <div class="field"><label for="qCaffeine">☕ ¿Sueles tomar café, té con cafeína o energéticas por la tarde-noche?</label><select id="qCaffeine"><option value="">Elige una opción</option><option value="often">Con frecuencia</option><option value="sometimes">De vez en cuando</option><option value="never">Casi nunca o nunca</option></select></div>
+    <div class="field"><label for="qRoutine">🌙 ¿Tienes una rutina para prepararte para dormir?</label><select id="qRoutine"><option value="">Elige una opción</option><option value="yes">Sí, la mayoría de los días</option><option value="sometimes">Algunos días</option><option value="no">Todavía no</option></select></div>
+    <button class="button full" id="saveDiagnosticBtn">Crear mis recomendaciones ✧</button>
+    <button class="button ghost full" id="skipDiagnosticBtn">Lo haré más tarde</button>
+  </div>
 </section>
 
-<!-- INICIO -->
-
+<section id="home" class="screen">
+  <div class="panel hero">
+    <div class="eyebrow" id="greetingEyebrow">Qué bueno tenerte aquí</div>
+    <div class="hero-grid">
+      <div><h1 id="greetingTitle">Esta noche, ve a tu ritmo.</h1><p class="muted" id="greetingText">No necesitas hacerlo perfecto. Solo empezar por algo pequeño.</p><span class="pill" id="levelPill">☾ Gatita soñadora</span></div>
+      <div class="cat-wrap"><img src="gatita.png" alt="Gatita lunar" id="homeCat"></div>
+    </div>
+    <div class="actions"><button class="button" data-go="routine">Mi rutina de hoy ✦</button><button class="button secondary" data-go="relax">Necesito una pausa</button></div>
+  </div>
+  <div class="grid2">
+    <div class="stat"><div class="emoji">💎</div><div class="num" id="starCount">0</div><div class="label">estrellas reunidas</div></div>
+    <div class="stat"><div class="emoji">🌙</div><div class="num" id="nightCount">0</div><div class="label">noches registradas</div></div>
+    <div class="stat"><div class="emoji">🔥</div><div class="num" id="streakCount">0</div><div class="label">días de racha actual</div></div>
+    <div class="stat"><div class="emoji">🐈‍⬛</div><div class="num" id="ownedCount">0</div><div class="label">tesoros para tu gatita</div></div>
+  </div>
+  <div class="section-head"><h2>Tu siguiente pequeño paso</h2><button class="link-button" data-go="routine">Ver rutina →</button></div>
+  <div class="panel soft" id="recommendationPanel"><div class="eyebrow">Una sugerencia amable</div><h3 id="recommendationTitle">Prepara una señal de descanso.</h3><p class="intro" id="recommendationBody" style="margin:0">Elige una acción sencilla que le indique a tu mente que el día está terminando.</p></div>
+  <div class="panel">
+    <div class="section-head" style="margin:0 0 10px"><h2>Tu último registro</h2><button class="link-button" data-go="calendar">Calendario →</button></div>
+    <div id="lastRecord" class="empty">Todavía no hay registros. Puedes comenzar esta noche. 💜</div>
+  </div>
+  <footer>Tu descanso no es una competencia. Cada pequeño paso cuenta. ✧</footer>
 </section>
 
-<section id="inicio" class="pantalla">
-
-<h1 id="tituloPrincipal">
-✨ Noctaris ✨
-</h1>
-
-<p class="sub">
-Dreamkeeper Edition ✨
-</p>
-
-<div class="card">
-
-<img id="mascota" src="gatita.png">
-
-<h2 id="estadoMascota">
-🐈‍⬛ Tu compañera lunar te acompaña 💜
-</h2>
-
-<p id="frase"></p>
-
-<div id="coins">
-💎 0 estrellas
-</div>
-
-<div id="racha">
-🔥 Racha: 0 días
-</div>
-
-</div>
-
-<div class="card">
-
-<h3>¿A qué hora dormirás hoy?</h3>
-
-<input type="time" id="hora">
-
-<button onclick="guardarHora()">
-Guardar 🌙
-</button>
-
-<button onclick="borrarDatos()">
-Reiniciar 🔄
-</button>
-
-</div>
-
+<section id="routine" class="screen">
+  <div class="eyebrow">Ritual nocturno</div><h1>Tu rutina, a tu manera.</h1>
+  <p class="intro">No necesitas completar todo. Escoge una o dos acciones que se sientan posibles hoy.</p>
+  <div class="panel">
+    <div class="section-head" style="margin:0 0 14px"><h2>Mi lista para esta noche</h2><span class="pill" id="routineProgress">0 de 4</span></div>
+    <div class="progress"><span id="routineBar"></span></div>
+    <div class="list" id="routineList">
+      <label class="list-row"><input type="checkbox" class="routine-check" value="screen" style="width:19px;min-height:19px;margin-top:4px"><span><strong>Dar una pausa a las pantallas</strong><p>Deja el teléfono a un lado unos minutos antes de acostarte, si te resulta posible.</p></span></label>
+      <label class="list-row"><input type="checkbox" class="routine-check" value="light" style="width:19px;min-height:19px;margin-top:4px"><span><strong>Preparar un ambiente tranquilo</strong><p>Atenúa la luz con opciones seguras y cómodas; evita cubrir focos o lámparas con papel o tela.</p></span></label>
+      <label class="list-row"><input type="checkbox" class="routine-check" value="tomorrow" style="width:19px;min-height:19px;margin-top:4px"><span><strong>Soltar pendientes en una nota</strong><p>Anota lo que quieres recordar mañana para no tener que resolverlo todo ahora.</p></span></label>
+      <label class="list-row"><input type="checkbox" class="routine-check" value="breathe" style="width:19px;min-height:19px;margin-top:4px"><span><strong>Regalarme un minuto de calma</strong><p>Prueba una respiración lenta y cómoda, sin forzar el aire.</p></span></label>
+    </div>
+    <p class="helper" style="margin-top:14px">La lista se reinicia cada día; puedes retomarla cuando quieras.</p>
+  </div>
+  <div class="panel soft"><div class="eyebrow">Hora de descanso</div><h2>¿A qué hora te gustaría acostarte?</h2><p class="intro">Este es tu plan, no una obligación. Puedes ajustarlo cada día.</p><div class="field"><label for="bedtime">Mi hora objetivo</label><input id="bedtime" type="time"></div><button class="button full" id="saveBedtimeBtn">Guardar mi intención 🌙</button><p class="helper" id="bedtimeSaved" style="margin:10px 0 0"></p></div>
+  <div class="panel"><div class="eyebrow">Un consejo para ti</div><h3 id="routineTipTitle">La constancia se construye con flexibilidad.</h3><p id="routineTip" class="intro" style="margin-bottom:0">Si una noche no sale como esperabas, no has perdido tu progreso. Puedes volver a intentarlo mañana.</p></div>
 </section>
 
-<!-- ESTADISTICAS -->
-
-<section id="estadisticas" class="pantalla">
-
-<div class="card">
-
-<h2>📊 Estadísticas</h2>
-
-<p id="totalNoches"></p>
-
-<p id="nivelActual"></p>
-
-<p id="mejorRacha"></p>
-
-</div>
-
+<section id="relax" class="screen">
+  <div class="eyebrow">Un espacio para bajar el ritmo</div><h1>Respira. No hay prisa.</h1><p class="intro">Una pausa breve para llevar tu atención al presente. Respira con suavidad y vuelve a tu ritmo natural si algo se siente incómodo.</p>
+  <div class="panel">
+    <div style="text-align:center"><span class="pill">✧ Respiración guiada · ciclo suave</span></div>
+    <div class="breath-orb" id="breathOrb"><div class="breath-inner"><div><div id="breathPhase">En calma</div><div id="breathCount">Cuando quieras</div></div></div></div>
+    <div class="timer" id="breathTimer">01:00</div>
+    <p class="helper" style="text-align:center;margin:7px 0 16px">Inhala suavemente · pausa cómoda · exhala sin esfuerzo.</p>
+    <div class="actions"><button class="button" id="breathStartBtn">Comenzar pausa</button><button class="button secondary" id="breathStopBtn">Terminar</button></div>
+  </div>
+  <div class="panel">
+    <div class="eyebrow">Otras formas de descansar</div>
+    <div class="list">
+      <div class="list-row"><div class="list-icon">🫧</div><div><strong>Relaja hombros y mandíbula</strong><p>Nota si estás tensando el cuerpo y permite que se afloje, sin exigirte sentir algo especial.</p></div></div>
+      <div class="list-row"><div class="list-icon">🌌</div><div><strong>Observa cinco cosas a tu alrededor</strong><p>Reconoce con calma lo que ves, sientes y escuchas en este momento.</p></div></div>
+      <div class="list-row"><div class="list-icon">📝</div><div><strong>Deja el día en una frase</strong><p>Completa: “Por hoy, puedo dejar para mañana…”</p></div></div>
+    </div>
+  </div>
+  <div class="panel soft"><h3>Una pequeña compañía 💜</h3><p id="comfortPhrase" class="intro" style="margin:0">No tienes que ganarte el descanso. También lo mereces en los días difíciles.</p><button class="button ghost full" id="newPhraseBtn">Otra frase amable ✧</button></div>
 </section>
 
-<!-- CALENDARIO -->
-
-<section id="calendario" class="pantalla">
-
-<div class="card">
-
-<h2>📅 Calendario Lunar</h2>
-
-<div id="diasCalendario"></div>
-
-</div>
-
+<section id="stats" class="screen">
+  <div class="eyebrow">Tu camino, sin comparaciones</div><h1>Cada noche cuenta.</h1><p class="intro">Estas cifras describen tus registros en Noctaris; no califican la calidad de tu descanso ni tu bienestar.</p>
+  <div class="grid2">
+    <div class="stat"><div class="emoji">🌙</div><div class="num" id="statsNights">0</div><div class="label">fechas registradas</div></div>
+    <div class="stat"><div class="emoji">🔥</div><div class="num" id="statsBestStreak">0</div><div class="label">mejor racha</div></div>
+    <div class="stat"><div class="emoji">💎</div><div class="num" id="statsStars">0</div><div class="label">estrellas disponibles</div></div>
+    <div class="stat"><div class="emoji">☾</div><div class="num" id="statsLevel">1</div><div class="label">nivel lunar</div></div>
+  </div>
+  <div class="panel"><h2>Tu progreso</h2><p class="intro">Las rachas se calculan por fechas consecutivas con registro, no por cantidad de veces que abres la app.</p><div id="statsSummary" class="list"></div></div>
+  <div class="panel"><h2>Logros desbloqueados</h2><p class="intro">Se celebran tus pasos constantes, sin castigos por descansar o saltarte un día.</p><div id="achievementList" class="list"></div></div>
 </section>
 
-<!-- TIENDA -->
-
-<section id="tienda" class="pantalla">
-
-<div class="card">
-
-<h2>🎁 Tienda</h2>
-
-<button onclick="comprarItem('🎀 Moño Rosa',100)">
-🎀 Moño Rosa - 100⭐
-</button>
-
-<button onclick="comprarItem('🌙 Halo Lunar',200)">
-🌙 Halo Lunar - 200⭐
-</button>
-
-<button onclick="comprarItem('👑 Corona Noctaris',500)">
-👑 Corona Noctaris - 500⭐
-</button>
-
-<p id="inventario"></p>
-
-</div>
-
+<section id="calendar" class="screen">
+  <div class="eyebrow">Tu historia lunar</div><h1>Calendario de descanso.</h1><p class="intro">Los días con un registro aparecerán iluminados. Cada fecha solo cuenta una vez.</p>
+  <div class="panel">
+    <div class="calendar-head"><button id="prevMonth" aria-label="Mes anterior">‹</button><h2 id="monthTitle" style="margin:0;text-align:center;flex:1">Mes</h2><button id="nextMonth" aria-label="Mes siguiente">›</button></div>
+    <div class="calendar-grid" id="calendarGrid"></div>
+    <div class="actions" style="margin-top:16px"><span class="pill">✦ Día registrado</span><span class="pill">◦ Hoy</span></div>
+  </div>
+  <div class="panel soft"><h3>Un registro no tiene que ser perfecto.</h3><p class="intro" style="margin:0">Puedes registrar tu hora objetivo incluso si tu noche fue distinta a lo planeado. La idea es observar tus hábitos con curiosidad, no juzgarte.</p></div>
 </section>
 
-<!-- LOGROS -->
-
-<section id="logrosPantalla" class="pantalla">
-
-<div class="card">
-
-<h2>🏆 Logros</h2>
-
-<div id="logros"></div>
-
-</div>
-
+<section id="collection" class="screen">
+  <div class="eyebrow">Pequeños tesoros</div><h1>La tienda lunar.</h1><p class="intro">Tus estrellas se ganan registrando una noche por fecha. Elige objetos para tu compañera lunar y colecciona tus favoritos.</p>
+  <div class="panel soft"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div><div class="eyebrow">Tu monedero</div><h2 id="shopStars" style="margin:0">0 ✦</h2></div><div style="font-size:30px">💎</div></div></div>
+  <div class="list" id="shopList"></div>
+  <div class="panel"><h2>Mis tesoros</h2><p class="intro">Lo que has desbloqueado hasta ahora.</p><div id="inventoryList" class="list"></div></div>
 </section>
 
-<!-- AJUSTES -->
-
-<section id="ajustes" class="pantalla">
-
-<div class="card">
-
-<h2>⚙️ Ajustes</h2>
-
-<p>🎵 Música ambiental próximamente</p>
-
-<p>🎨 Temas desbloqueables próximamente</p>
-
-</div>
-
+<section id="settings" class="screen">
+  <div class="eyebrow">Tu espacio, tus decisiones</div><h1>Ajustes.</h1><p class="intro">Puedes cambiar tu apodo o administrar los datos guardados en este dispositivo.</p>
+  <div class="panel">
+    <div class="field"><label for="settingsName">Tu nombre o apodo</label><input id="settingsName" maxlength="32"></div>
+    <div class="field"><label for="settingsPet">Nombre de tu compañera lunar</label><input id="settingsPet" maxlength="24"></div>
+    <button class="button full" id="saveSettingsBtn">Guardar cambios</button>
+    <p class="helper" id="settingsMessage" style="margin:10px 0 0"></p>
+  </div>
+  <div class="panel"><h2>Privacidad y datos</h2><p class="intro">Los datos de esta versión se almacenan localmente en el navegador de este dispositivo. Borrar los datos del navegador puede eliminarlos.</p><div class="callout">Noctaris no realiza un diagnóstico clínico. Si las dificultades de sueño o el estrés te preocupan o afectan tu vida diaria, considera buscar orientación profesional.</div><button class="button danger full" id="resetRecordsBtn">Borrar registros y estrellas</button><button class="button danger full" id="resetAllBtn">Reiniciar Noctaris por completo</button></div>
 </section>
-
-<!-- NAVBAR -->
-
-<div class="navbar">
-
-<div class="navitem active"
-onclick="mostrarPantalla('inicio')">
-
-🏠
-
-<p>Inicio</p>
-
 </div>
 
-<div class="navitem"
-onclick="mostrarPantalla('estadisticas')">
-
-📊
-
-<p>Stats</p>
-
-</div>
-
-<div class="navitem"
-onclick="mostrarPantalla('calendario')">
-
-📅
-
-<p>Calendario</p>
-
-</div>
-
-<div class="navitem"
-onclick="mostrarPantalla('tienda')">
-
-🎁
-
-<p>Tienda</p>
-
-</div>
-
-<div class="navitem"
-onclick="mostrarPantalla('logrosPantalla')">
-
-🏆
-
-<p>Logros</p>
-
-</div>
-
-</div>
+<nav class="navbar" aria-label="Navegación principal">
+  <button class="navitem active" data-screen="home" aria-label="Inicio">⌂<span>Inicio</span></button>
+  <button class="navitem" data-screen="routine" aria-label="Rutina">☾<span>Rutina</span></button>
+  <button class="navitem" data-screen="relax" aria-label="Pausa">✧<span>Pausa</span></button>
+  <button class="navitem" data-screen="stats" aria-label="Progreso">◷<span>Progreso</span></button>
+  <button class="navitem" data-screen="calendar" aria-label="Calendario">▦<span>Calendario</span></button>
+  <button class="navitem" data-screen="collection" aria-label="Tienda">◇<span>Tienda</span></button>
+  <button class="navitem" data-screen="settings" aria-label="Ajustes">⚙<span>Ajustes</span></button>
+</nav>
 
 <script>
-  
-let nombreUsuario =
-localStorage.getItem("nombreUsuario");
-
-let nombreMascota =
-localStorage.getItem("nombreMascota");
-
-let estrellas =
-parseInt(localStorage.getItem("estrellas")) || 0;
-
-let inventario =
-JSON.parse(localStorage.getItem("inventario")) || [];
-
-const frases = [
-
-"Las estrellas también descansan 🌌",
-
-"Tu gatita está orgullosa de ti 🐈‍⬛",
-
-"Cada sueño reconstruye tu energía ✨",
-
-"Hoy hiciste suficiente 💜",
-
-"Descansar también es avanzar 🌙"
-
-];
-
-function mostrarFrase(){
-
-const random =
-Math.floor(Math.random()*frases.length);
-
-document.getElementById("frase").innerText =
-frases[random];
-
-}
-
-function mostrarPantalla(id){
-
-document
-.querySelectorAll(".pantalla")
-.forEach(p=>{
-
-p.classList.remove("activa");
-
-});
-
-document
-.getElementById(id)
-.classList.add("activa");
-
-}
-
-function guardarPerfil(){
-
-let usuario =
-document.getElementById(
-"nombreUsuario"
-).value;
-
-let mascota =
-document.getElementById(
-"nombreMascota"
-).value;
-
-if(usuario === "" || mascota === ""){
-
-alert("Completa ambos campos 💜");
-
-return;
-
-}
-
-localStorage.setItem(
-"nombreUsuario",
-usuario
-);
-
-localStorage.setItem(
-"nombreMascota",
-mascota
-);
-
-nombreUsuario = usuario;
-nombreMascota = mascota;
-
-actualizarPerfil();
-
-mostrarPantalla("diagnostico");
-
-}
-
-function guardarHora(){
-
-let hora =
-document.getElementById("hora").value;
-
-if(hora==="") return;
-
-let datos =
-JSON.parse(
-localStorage.getItem("registroSueño")
-) || [];
-
-const hoy =
-new Date().toLocaleDateString();
-
-datos.push({
-
-fecha:hoy,
-hora:hora
-
-});
-
-localStorage.setItem(
-"registroSueño",
-JSON.stringify(datos)
-);
-
-estrellas += 10;
-
-localStorage.setItem(
-"estrellas",
-estrellas
-);
-
-actualizarTodo();
-
-}
-
-function borrarDatos(){
-
-localStorage.removeItem("registroSueño");
-
-localStorage.removeItem("estrellas");
-
-localStorage.removeItem("inventario");
-
-estrellas = 0;
-
-inventario = [];
-
-actualizarTodo();
-
-}
-
-function comprarItem(nombre,costo){
-
-if(estrellas < costo){
-
-alert(
-"No tienes suficientes estrellas 💔"
-);
-
-return;
-
-}
-
-estrellas -= costo;
-
-inventario.push(nombre);
-
-localStorage.setItem(
-"estrellas",
-estrellas
-);
-
-localStorage.setItem(
-"inventario",
-JSON.stringify(inventario)
-);
-
-actualizarTodo();
-
-}
-
-function actualizarTodo(){
-
-let datos =
-JSON.parse(
-localStorage.getItem("registroSueño")
-) || [];
-
-document.getElementById("coins").innerText =
-"💎 " + estrellas + " estrellas";
-
-document.getElementById("racha").innerText =
-"🔥 Registros: " + datos.length;
-
-document.getElementById("totalNoches").innerText =
-"🌙 Noches registradas: " +
-datos.length;
-
-let nivel =
-"Gatita Dormilona";
-
-if(datos.length >= 7)
-nivel = "Exploradora Lunar";
-
-if(datos.length >= 14)
-nivel = "Guardiana de Sueños";
-
-if(datos.length >= 30)
-nivel = "👑 Reina Lunar";
-
-document.getElementById("nivelActual").innerText =
-"🐈‍⬛ Nivel: " + nivel;
-
-document.getElementById("mejorRacha").innerText =
-"🔥 Mejor racha: " +
-datos.length + " días";
-
-document.getElementById("inventario").innerHTML =
-"<b>Objetos:</b><br>" +
-(inventario.join("<br>") || "Vacío");
-
-let logros = "";
-
-if(datos.length >= 3)
-logros += "🌙 Primera Racha<br>";
-
-if(datos.length >= 7)
-logros += "✨ Guardiana de Sueños<br>";
-
-if(datos.length >= 14)
-logros += "🏆 Maestra del Descanso<br>";
-
-document.getElementById("logros").innerHTML =
-logros || "Aún no hay logros";
-
-let calendario =
-document.getElementById(
-"diasCalendario"
-);
-
-calendario.innerHTML = "";
-
-for(let i=1;i<=30;i++){
-
-let dia =
-document.createElement("div");
-
-dia.classList.add("dia");
-
-dia.innerText = i;
-
-if(i <= datos.length){
-
-dia.classList.add(
-"registrado"
-);
-
-}
-
-calendario.appendChild(dia);
-
-}
-
-}
-
-function actualizarPerfil(){
-
-if(nombreUsuario){
-
-document.getElementById(
-"tituloPrincipal"
-).innerText =
-"🌙 Buenas noches, " +
-nombreUsuario;
-
-}
-
-if(nombreMascota){
-
-document.getElementById(
-"estadoMascota"
-).innerText =
-"🐈‍⬛ " +
-nombreMascota +
-" te estuvo esperando 💜";
-
-}
-
-}
-
-function guardarDiagnostico(){
-
-let respuestas = {
-
-sueno:
-document.getElementById("pregunta1").value,
-
-telefono:
-document.getElementById("pregunta2").value,
-
-estres:
-document.getElementById("pregunta3").value,
-
-cafeina:
-document.getElementById("pregunta4").value,
-
-rutina:
-document.getElementById("pregunta5").value
-
+(function(){
+'use strict';
+const KEY='noctaris_v2';
+const LEGACY={
+ name:localStorage.getItem('nombreUsuario')||'',
+ pet:localStorage.getItem('nombreMascota')||'',
+ stars:Number(localStorage.getItem('estrellas'))||0,
+ records:parseJSON(localStorage.getItem('registroSueño'),[]),
+ inventory:parseJSON(localStorage.getItem('inventario'),[]),
+ diagnostic:parseJSON(localStorage.getItem('diagnostico'),null)
 };
-
-localStorage.setItem(
-"diagnostico",
-JSON.stringify(respuestas)
-);
-
-let mensaje = "";
-
-if(
-respuestas.sueno === "Menos de 4 horas" ||
-respuestas.estres === "Muy alto"
-){
-
-mensaje =
-"⚠️ Detectamos hábitos que podrían afectar tu descanso. Noctaris te ayudará a mejorar poco a poco 💜";
-
+function parseJSON(value,fallback){try{return value?JSON.parse(value):fallback}catch(e){return fallback}}
+function localDateKey(date){return date.getFullYear()+'-'+String(date.getMonth()+1).padStart(2,'0')+'-'+String(date.getDate()).padStart(2,'0')}
+function dateFromKey(key){const a=String(key).split('-').map(Number);return new Date(a[0],a[1]-1,a[2],12,0,0)}
+function todayKey(){return localDateKey(new Date())}
+function freshState(){return {name:LEGACY.name,pet:LEGACY.pet,stars:LEGACY.stars,records:LEGACY.records.map(function(r){const date=normalizeDate(r.fecha||r.date);return date?{date:date,time:r.hora||r.time||''}:null}).filter(Boolean),inventory:LEGACY.inventory,diagnostic:LEGACY.diagnostic,bedtime:'',routine:{},onboarded:!!LEGACY.name}}
+function normalizeDate(value){
+ if(!value)return '';
+ if(/^\d{4}-\d{2}-\d{2}$/.test(value))return value;
+ const d=new Date(value);
+ if(!Number.isNaN(d.getTime()))return localDateKey(d);
+ const parts=String(value).split('/');
+ if(parts.length===3){const d2=new Date(Number(parts[2]),Number(parts[1])-1,Number(parts[0]),12);if(!Number.isNaN(d2.getTime()))return localDateKey(d2)}
+ return '';
 }
-else{
-
-mensaje =
-"✨ Tienes una buena base para construir hábitos de sueño saludables.";
-
+let state=parseJSON(localStorage.getItem(KEY),null)||freshState();
+if(!Array.isArray(state.records))state.records=[];
+if(!Array.isArray(state.inventory))state.inventory=[];
+if(!state.routine||typeof state.routine!=='object')state.routine={};
+if(!state.diagnostic)state.diagnostic=LEGACY.diagnostic;
+state.records=state.records.map(function(r){const date=normalizeDate(r.date||r.fecha);return date?{date:date,time:r.time||r.hora||''}:null}).filter(Boolean);
+state.records=Array.from(new Map(state.records.map(function(r){return [r.date,r]})).values()).sort(function(a,b){return a.date.localeCompare(b.date)});
+state.stars=Math.max(0,Number(state.stars)||0);
+const $=id=>document.getElementById(id);
+const screens=['welcome','diagnostic','home','routine','relax','stats','calendar','collection','settings'];
+let visibleMonth=new Date(new Date().getFullYear(),new Date().getMonth(),1);
+let breathInterval=null,breathRemaining=60,breathStartedAt=0,breathElapsed=0,breathPhaseTimer=null,phaseIndex=0;
+const shopItems=[
+ {id:'bow',name:'Moño de aurora',desc:'Un detalle suave para tu gatita lunar.',icon:'🎀',cost:100},
+ {id:'halo',name:'Halo de luna',desc:'Un brillo delicado para acompañar tus sueños.',icon:'🌙',cost:200},
+ {id:'crown',name:'Corona Noctaris',desc:'Un tesoro especial para tu compañera.',icon:'👑',cost:500},
+ {id:'star',name:'Estrella fugaz',desc:'Un pequeño destello para su rincón.',icon:'🌠',cost:300}
+];
+const phrases=[
+'No tienes que ganarte el descanso. También lo mereces en los días difíciles.',
+'Puedes ir despacio. No todo necesita resolverse esta noche.',
+'Descansar también forma parte de avanzar.',
+'Tu valor no depende de cuánto hayas hecho hoy.',
+'Por hoy, hacer lo que pudiste es suficiente.',
+'Una noche difícil no borra los pasos que ya diste.'
+];
+function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+function esc(value){return String(value||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function uniqueDates(){return Array.from(new Set(state.records.map(r=>r.date))).sort()}
+function currentStreak(){
+ const dates=new Set(uniqueDates());let cursor=dateFromKey(todayKey());
+ if(!dates.has(localDateKey(cursor))){cursor.setDate(cursor.getDate()-1);if(!dates.has(localDateKey(cursor)))return 0}
+ let count=0;while(dates.has(localDateKey(cursor))){count++;cursor.setDate(cursor.getDate()-1)}return count
 }
-
-alert(mensaje);
-
-mostrarPantalla("inicio");
+function bestStreak(){
+ const dates=uniqueDates();let best=0,run=0,prev=null;
+ dates.forEach(function(key){const d=dateFromKey(key);if(prev){const gap=Math.round((d-prev)/86400000);run=gap===1?run+1:1}else run=1;best=Math.max(best,run);prev=d});return best
 }
-
-mostrarFrase();
-
-actualizarTodo();
-
-if(localStorage.getItem("nombreUsuario")){
-
-actualizarPerfil();
-
-mostrarPantalla("inicio");
-
-}else{
-
-mostrarPantalla("bienvenida");
-
-  }
-  
-  
-  </script>
-
+function levelInfo(){const n=uniqueDates().length;if(n>=30)return {level:4,name:'Guardiana de constelaciones'};if(n>=14)return {level:3,name:'Exploradora lunar'};if(n>=7)return {level:2,name:'Cuidadora de sueños'};return {level:1,name:'Gatita soñadora'}}
+function go(id){
+ if(!screens.includes(id))return;
+ screens.forEach(function(s){$(s).classList.toggle('active',s===id)});
+ document.querySelectorAll('.navitem').forEach(function(b){b.classList.toggle('active',b.dataset.screen===id)});
+ if(id==='calendar')renderCalendar();
+ if(id==='stats')renderStats();
+ if(id==='collection')renderShop();
+ if(id==='routine')renderRoutine();
+ if(id==='settings'){ $('settingsName').value=state.name||'';$('settingsPet').value=state.pet||'';$('settingsMessage').textContent=''}
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function showApp(){
+ $('todayChip').textContent=new Intl.DateTimeFormat('es-MX',{day:'numeric',month:'short'}).format(new Date())+' · '+new Intl.DateTimeFormat('es-MX',{weekday:'short'}).format(new Date());
+ if(state.onboarded&&state.name){go(state.diagnostic?'home':'diagnostic')}else go('welcome');
+ renderAll();
+}
+function personalized(){
+ const d=state.diagnostic||{};
+ if(d.sleep==='lt4'||d.sleep==='4to5')return {title:'Dale espacio al descanso',body:'Si te es posible, intenta adelantar tu hora de acostarte poco a poco y busca apoyo profesional si dormir tan poco se mantiene o te afecta durante el día.',tip:'Prueba adelantar tu preparación para dormir 10–15 minutos, sin convertirlo en una obligación.'};
+ if(d.stress==='high')return {title:'Primero, bajemos el ritmo',body:'Cuando el estrés está alto, una pausa amable puede ser un primer paso. No necesitas resolver todos tus pendientes antes de descansar.',tip:'Antes de acostarte, anota una sola cosa que pueda esperar hasta mañana y prueba una pausa breve.'};
+ if(d.phone==='always')return {title:'Un pequeño espacio sin pantalla',body:'Si encaja en tu noche, deja el teléfono a un lado unos minutos antes de acostarte y cambia ese momento por música tranquila, lectura o respiración suave.',tip:'Elige un momento breve sin pantalla que sí sea realista para ti.'};
+ if(d.caffeine==='often')return {title:'Observa cómo te afecta la cafeína',body:'La cafeína puede interferir con el sueño en algunas personas. Prueba observar horarios y efectos, y ajusta gradualmente si lo necesitas.',tip:'Observa si reducir la cafeína al final del día te ayuda a descansar mejor.'};
+ if(d.routine==='no'||d.routine==='sometimes')return {title:'Crea una señal de descanso',body:'Una rutina corta y repetible puede ayudarte a pasar del ritmo del día a un momento más tranquilo.',tip:'Escoge solo dos pasos sencillos para repetir esta noche.'};
+ return {title:'Cuida lo que ya te funciona',body:'Puedes fortalecer tus hábitos con una rutina flexible y un horario de descanso lo más regular posible, de acuerdo con tus necesidades.',tip:'Mantén un pequeño ritual que te resulte agradable y fácil de repetir.'}
+}
+function renderAll(){
+ const level=levelInfo(),count=uniqueDates().length;
+ $('greetingTitle').textContent=state.name?'Qué bueno verte, '+state.name+'.':'Esta noche, ve a tu ritmo.';
+ $('greetingEyebrow').textContent=state.pet?'Tu compañera '+state.pet+' te acompaña':'Qué bueno tenerte aquí';
+ $('greetingText').textContent='No necesitas hacerlo perfecto. Solo empezar por algo pequeño.';
+ $('levelPill').textContent='☾ '+level.name;
+ $('starCount').textContent=state.stars;
+ $('nightCount').textContent=count;
+ $('streakCount').textContent=currentStreak();
+ $('ownedCount').textContent=state.inventory.length;
+ $('statsNights').textContent=count;$('statsBestStreak').textContent=bestStreak();$('statsStars').textContent=state.stars;$('statsLevel').textContent=level.level;
+ const rec=personalized();$('recommendationTitle').textContent=rec.title;$('recommendationBody').textContent=rec.body;$('routineTipTitle').textContent=rec.title;$('routineTip').textContent=rec.tip;
+ const dates=state.records.slice().sort(function(a,b){return b.date.localeCompare(a.date)});
+ $('lastRecord').innerHTML=dates.length?'<div class="list-row"><div class="list-icon">🌙</div><div><strong>'+esc(formatDate(dates[0].date))+'</strong><p>'+(dates[0].time?'Hora objetivo: '+esc(dates[0].time):'Registro de descanso')+'</p></div></div>':'<div class="empty">Todavía no hay registros. Puedes comenzar esta noche. 💜</div>';
+ $('shopStars').textContent=state.stars+' ✦';
+ renderRoutine();renderStats();renderCalendar();renderShop();
+}
+function formatDate(key){return new Intl.DateTimeFormat('es-MX',{day:'numeric',month:'long',year:'numeric'}).format(dateFromKey(key))}
+function renderRoutine(){
+ const done=state.routine[todayKey()]||[];
+ document.querySelectorAll('.routine-check').forEach(function(c){c.checked=done.includes(c.value)});
+ const count=document.querySelectorAll('.routine-check:checked').length;
+ $('routineProgress').textContent=count+' de 4';$('routineBar').style.width=(count/4*100)+'%';
+ $('bedtime').value=state.bedtime||'';
+ $('bedtimeSaved').textContent=state.bedtime?'Tu intención para hoy: '+state.bedtime+'. Puedes cambiarla cuando quieras.':'Todavía no has guardado una hora objetivo para hoy.';
+}
+function renderStats(){
+ const n=uniqueDates().length,level=levelInfo();
+ const achievements=[
+ {ok:n>=1,icon:'🌱',title:'Primer paso',desc:'Registra tu primera noche.'},
+ {ok:n>=3,icon:'🌙',title:'Tres noches de cuidado',desc:'Acumula registros en tres fechas.'},
+ {ok:currentStreak()>=3,icon:'🔥',title:'Pequeña constelación',desc:'Registra tres días consecutivos.'},
+ {ok:n>=7,icon:'✨',title:'Cuidadora de sueños',desc:'Alcanza siete noches registradas.'},
+ {ok:n>=14,icon:'🪐',title:'Exploradora lunar',desc:'Alcanza catorce noches registradas.'},
+ {ok:n>=30,icon:'👑',title:'Guardiana de constelaciones',desc:'Alcanza treinta noches registradas.'}
+ ];
+ $('achievementList').innerHTML=achievements.map(function(a){return '<div class="list-row"><div class="list-icon">'+(a.ok?a.icon:'🔒')+'</div><div><strong>'+esc(a.title)+(a.ok?' · Desbloqueado':'')+'</strong><p>'+esc(a.desc)+'</p></div></div>'}).join('');
+ $('statsSummary').innerHTML='<div class="list-row"><div class="list-icon">📆</div><div><strong>'+n+' fechas con registro</strong><p>Solo se cuenta una vez cada fecha.</p></div></div><div class="list-row"><div class="list-icon">🔥</div><div><strong>'+currentStreak()+' días de racha actual</strong><p>Tu mejor racha registrada ha sido de '+bestStreak()+' días.</p></div></div><div class="list-row"><div class="list-icon">🌟</div><div><strong>'+esc(level.name)+'</strong><p>Nivel '+level.level+' · Se basa en tus noches registradas.</p></div></div>';
+}
+function renderCalendar(){
+ const year=visibleMonth.getFullYear(),month=visibleMonth.getMonth();
+ $('monthTitle').textContent=new Intl.DateTimeFormat('es-MX',{month:'long',year:'numeric'}).format(visibleMonth);
+ const first=new Date(year,month,1),offset=(first.getDay()+6)%7,days=new Date(year,month+1,0).getDate(),today=todayKey(),logged=new Set(uniqueDates());
+ let html=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].map(function(x){return '<div class="calendar-weekday">'+x+'</div>'}).join('');
+ for(let i=0;i<offset;i++)html+='<div class="calendar-day blank"></div>';
+ for(let day=1;day<=days;day++){const key=localDateKey(new Date(year,month,day,12));const cls='calendar-day'+(key===today?' today':'')+(logged.has(key)?' logged':'');html+='<div class="'+cls+'" aria-label="'+day+(logged.has(key)?', registrado':'')+'"><span>'+day+'</span>'+(logged.has(key)?'<span class="dot"></span>':'')+'</div>'}
+ $('calendarGrid').innerHTML=html;
+}
+function renderShop(){
+ $('shopStars').textContent=state.stars+' ✦';
+ $('shopList').innerHTML=shopItems.map(function(item){
+ const owned=state.inventory.some(function(x){return (typeof x==='string'?x:x.id)===item.id||(typeof x==='string'&&x===item.name)});
+ return '<div class="item"><div class="item-icon">'+item.icon+'</div><div class="item-main"><strong>'+esc(item.name)+'</strong><p>'+esc(item.desc)+'</p><p style="color:#e8d3ff;margin-top:5px">✦ '+item.cost+' estrellas</p></div><button class="button small '+(owned?'secondary':'')+'" data-buy="'+item.id+'" '+(owned?'disabled':'')+'>'+(owned?'Obtenido':'Canjear')+'</button></div>'
+ }).join('');
+ $('inventoryList').innerHTML=state.inventory.length?state.inventory.map(function(x){const item=shopItems.find(function(i){return i.id===(typeof x==='string'?x:x.id)||i.name===x});return '<div class="list-row"><div class="list-icon">'+(item?item.icon:'✨')+'</div><div><strong>'+esc(item?item.name:(typeof x==='string'?x:'Tesoro lunar'))+'</strong><p>Un pequeño detalle de tu colección.</p></div></div>'}).join(''):'<div class="empty">Tu colección está esperando su primer tesoro. ✨</div>';
+}
+function saveRecord(){
+ const key=todayKey(),time=$('bedtime').value||state.bedtime||'';
+ const old=state.records.find(function(r){return r.date===key});
+ if(old){old.time=time||old.time;state.bedtime=time;save();renderAll();alert('Tu registro de hoy se actualizó. Noctaris solo cuenta una estrella por fecha. 💜');return}
+ state.records.push({date:key,time:time});state.records.sort(function(a,b){return a.date.localeCompare(b.date)});
+ state.stars+=10;state.bedtime=time;save();renderAll();alert('Tu noche quedó registrada y ganaste 10 estrellas. Gracias por dedicarte este momento. ✨');
+}
+function saveDiagnostic(){
+ const values={sleep:$('qSleep').value,phone:$('qPhone').value,stress:$('qStress').value,caffeine:$('qCaffeine').value,routine:$('qRoutine').value};
+ if(Object.values(values).some(function(v){return !v})){alert('Completa las cinco respuestas para personalizar tus sugerencias, o elige “Lo haré más tarde”. 💜');return}
+ state.diagnostic=values;save();renderAll();go('home');
+}
+function startBreathing(){
+ if(breathInterval)return;
+ breathRemaining=60;breathElapsed=0;phaseIndex=0;breathStartedAt=Date.now();
+ const phases=[{name:'Inhala',duration:4,cls:'inhale'},{name:'Pausa suave',duration:2,cls:'hold'},{name:'Exhala',duration:6,cls:'exhale'}];
+ function tick(){
+  const now=Date.now();const elapsed=Math.floor((now-breathStartedAt)/1000);breathRemaining=Math.max(0,60-elapsed);$('breathTimer').textContent='00:'+String(breathRemaining).padStart(2,'0');
+  if(breathRemaining<=0){stopBreathing(true);$('breathPhase').textContent='Muy bien';$('breathCount').textContent='Pausa completada';return}
+  const cycle=elapsed%12;let phase=phases[0],remaining=4-cycle;
+  if(cycle>=4&&cycle<6){phase=phases[1];remaining=6-cycle}else if(cycle>=6){phase=phases[2];remaining=12-cycle}
+  $('breathPhase').textContent=phase.name;$('breathCount').textContent='Sigue tu ritmo · '+remaining+' s';$('breathOrb').className='breath-orb '+phase.cls;
+ }
+ tick();breathInterval=setInterval(tick,250);$('breathStartBtn').textContent='Pausa en curso…';$('breathStartBtn').disabled=true;
+}
+function stopBreathing(completed){
+ if(breathInterval){clearInterval(breathInterval);breathInterval=null}
+ $('breathOrb').className='breath-orb';$('breathStartBtn').textContent='Comenzar pausa';$('breathStartBtn').disabled=false;
+ if(!completed){$('breathPhase').textContent='En calma';$('breathCount').textContent='Cuando quieras';$('breathTimer').textContent='01:00'}
+}
+function resetRoutineIfNeeded(){const key=todayKey();if(!state.routine[key])state.routine[key]=[]}
+$('beginBtn').addEventListener('click',function(){
+ const name=$('profileName').value.trim(),pet=$('petName').value.trim();
+ if(!name||!pet){alert('Escribe tu apodo y el nombre de tu compañera lunar para continuar. 💜');return}
+ state.name=name;state.pet=pet;state.onboarded=true;save();go('diagnostic');
+});
+$('saveDiagnosticBtn').addEventListener('click',saveDiagnostic);
+$('skipDiagnosticBtn').addEventListener('click',function(){state.diagnostic=state.diagnostic||{};save();go('home');renderAll()});
+document.querySelectorAll('[data-screen]').forEach(function(b){b.addEventListener('click',function(){go(b.dataset.screen)})});
+document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){go(b.dataset.go)})});
+$('saveBedtimeBtn').addEventListener('click',function(){state.bedtime=$('bedtime').value;save();$('bedtimeSaved').textContent=state.bedtime?'Tu intención para hoy: '+state.bedtime+'. Puedes cambiarla cuando quieras.':'Elige una hora para guardar tu intención.';});
+document.querySelectorAll('.routine-check').forEach(function(c){c.addEventListener('change',function(){resetRoutineIfNeeded();const arr=state.routine[todayKey()];if(c.checked&&!arr.includes(c.value))arr.push(c.value);if(!c.checked)state.routine[todayKey()]=arr.filter(function(x){return x!==c.value});save();renderRoutine()})});
+$('breathStartBtn').addEventListener('click',startBreathing);
+$('breathStopBtn').addEventListener('click',function(){stopBreathing(false)});
+$('newPhraseBtn').addEventListener('click',function(){let next=phrases[Math.floor(Math.random()*phrases.length)];if(next===$('comfortPhrase').textContent)next=phrases[(phrases.indexOf(next)+1)%phrases.length];$('comfortPhrase').textContent=next});
+$('prevMonth').addEventListener('click',function(){visibleMonth=new Date(visibleMonth.getFullYear(),visibleMonth.getMonth()-1,1);renderCalendar()});
+$('nextMonth').addEventListener('click',function(){visibleMonth=new Date(visibleMonth.getFullYear(),visibleMonth.getMonth()+1,1);renderCalendar()});
+$('calendarGrid').addEventListener('click',function(){});
+$('shopList').addEventListener('click',function(e){const btn=e.target.closest('[data-buy]');if(!btn)return;const item=shopItems.find(function(x){return x.id===btn.dataset.buy});if(!item)return;if(state.inventory.some(function(x){return (typeof x==='string'?x:x.id)===item.id})){alert('Este tesoro ya forma parte de tu colección. ✨');return}if(state.stars<item.cost){alert('Todavía no tienes suficientes estrellas. Cada noche registrada suma 10, a tu ritmo. 💜');return}state.stars-=item.cost;state.inventory.push({id:item.id,name:item.name});save();renderAll()});
+$('saveSettingsBtn').addEventListener('click',function(){const name=$('settingsName').value.trim(),pet=$('settingsPet').value.trim();if(!name||!pet){$('settingsMessage').textContent='Completa ambos nombres para guardar los cambios.';return}state.name=name;state.pet=pet;state.onboarded=true;save();renderAll();$('settingsMessage').textContent='Tus cambios se guardaron. Qué bonito tenerte aquí. 💜'});
+$('resetRecordsBtn').addEventListener('click',function(){if(!confirm('¿Borrar todos tus registros, rachas y estrellas? Tu perfil y tus tesoros se conservarán.'))return;state.records=[];state.stars=0;save();renderAll();alert('Tus registros y estrellas se han reiniciado.')});
+$('resetAllBtn').addEventListener('click',function(){if(!confirm('¿Reiniciar Noctaris por completo en este dispositivo? Se borrarán perfil, registros y tesoros.'))return;localStorage.removeItem(KEY);['nombreUsuario','nombreMascota','estrellas','registroSueño','inventario','diagnostico'].forEach(function(k){localStorage.removeItem(k)});state=freshState();renderAll();go('welcome')});
+$('bedtime').addEventListener('change',function(){state.bedtime=$('bedtime').value;save()});
+$('todayChip').textContent=new Intl.DateTimeFormat('es-MX',{day:'numeric',month:'short'}).format(new Date())+' · '+new Intl.DateTimeFormat('es-MX',{weekday:'short'}).format(new Date());
+if(state.name){$('profileName').value=state.name;$('settingsName').value=state.name}
+if(state.pet){$('petName').value=state.pet;$('settingsPet').value=state.pet}
+if(state.bedtime)$('bedtime').value=state.bedtime;
+if(state.onboarded&&state.name){if(state.diagnostic)go('home');else go('diagnostic')}else go('welcome');
+renderAll();
+})();
+</script>
 </body>
 </html>

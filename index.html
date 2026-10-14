@@ -390,25 +390,29 @@ const phrases=[
 ];
 function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 const REMINDER_KEY='noctaris_reminder_v1';
+let noctarisSWRegistration=null;
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').then(function(reg){noctarisSWRegistration=reg}).catch(function(){noctarisSWRegistration=null})}
 function getReminder(){try{return JSON.parse(localStorage.getItem(REMINDER_KEY)||'{}')}catch(e){return {}}}
 function renderReminderSettings(){const r=getReminder();if($('reminderEnabled'))$('reminderEnabled').checked=!!r.enabled;if($('reminderTime'))$('reminderTime').value=r.time||'21:30';}
 async function saveReminderSettings(){
  const msg=$('reminderMessage'),enabled=$('reminderEnabled').checked,time=$('reminderTime').value||'21:30';
  if(!enabled){localStorage.setItem(REMINDER_KEY,JSON.stringify({enabled:false,time:time,lastShown:''}));msg.textContent='Recordatorio pausado. Puedes volver a activarlo cuando quieras. 💜';return}
  if(!('Notification' in window)){msg.textContent='Este navegador no permite notificaciones. Puedes programar una alarma en tu teléfono.';return}
- if(!window.isSecureContext){msg.textContent='Para solicitar notificaciones, abre Noctaris mediante su dirección HTTPS.';return}
+ if(!window.isSecureContext){msg.textContent='Para solicitar notificaciones, abre Noctaris mediante HTTPS.';return}
  try{
   const permission=Notification.permission==='granted'?'granted':await Notification.requestPermission();
-  if(permission!=='granted'){msg.textContent='No se concedió permiso. Puedes revisar los ajustes de notificaciones del navegador y volver a intentarlo.';return}
+  if(permission!=='granted'){msg.textContent='No se concedió permiso. Revisa los ajustes de notificaciones del navegador y vuelve a intentarlo.';return}
+  if('serviceWorker' in navigator&&!noctarisSWRegistration){try{noctarisSWRegistration=await navigator.serviceWorker.register('./sw.js')}catch(e){}}
+  if(!noctarisSWRegistration){msg.textContent='El navegador no pudo preparar las notificaciones. Actualiza la página y vuelve a intentarlo.';return}
   localStorage.setItem(REMINDER_KEY,JSON.stringify({enabled:true,time:time,lastShown:''}));
-  msg.textContent='¡Preferencia guardada! El aviso funcionará mientras Noctaris permanezca abierta en esta página. Para recibirlo con la app cerrada, falta configurar notificaciones push.';
+  msg.textContent='¡Recordatorio guardado! Para que llegue a la hora elegida, Noctaris debe permanecer abierta en esta página. Si cierras la app, todavía no podrá programarlo por sí sola.';
  }catch(e){msg.textContent='No se pudo activar el permiso. Revisa los ajustes de notificaciones del navegador.'}
 }
 function checkOpenTabReminder(){
- const r=getReminder();if(!r.enabled||!r.time||!('Notification' in window)||Notification.permission!=='granted')return;
+ const r=getReminder();if(!r.enabled||!r.time||!('Notification' in window)||Notification.permission!=='granted'||!noctarisSWRegistration)return;
  const now=new Date(),key=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
  const hm=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
- if(hm===r.time&&r.lastShown!==key){try{new Notification('Un momento para ti 🌙',{body:'Es hora de bajar el ritmo y preparar tu descanso. Tu gatita te acompaña. 💜'});r.lastShown=key;localStorage.setItem(REMINDER_KEY,JSON.stringify(r))}catch(e){}}
+ if(hm===r.time&&r.lastShown!==key){noctarisSWRegistration.showNotification('Un momento para ti 🌙',{body:'Es hora de bajar el ritmo y preparar tu descanso. Tu gatita te acompaña. 💜',icon:'assets/noctaris-kitty.svg',tag:'noctaris-bedtime'}).then(function(){r.lastShown=key;localStorage.setItem(REMINDER_KEY,JSON.stringify(r))}).catch(function(){})}
 }
 
 function esc(value){return String(value||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}

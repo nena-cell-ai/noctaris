@@ -24,13 +24,13 @@
 <!-- forehead moon -->
 <path d="M114 48 C100 46 96 62 104 70 C113 79 128 72 130 60 C121 67 111 63 109 56 C108 53 110 50 114 48Z" fill="url(#gold)" filter="url(#glow)"/>
 <!-- eyes -->
-<path d="M49 94 Q72 75 95 94 Q86 116 69 116 Q53 113 49 94Z" fill="#100e20" stroke="#0d0b19" stroke-width="3"/>
-<path d="M125 94 Q148 75 171 94 Q167 113 151 116 Q134 116 125 94Z" fill="#100e20" stroke="#0d0b19" stroke-width="3"/>
-<ellipse cx="72" cy="98" rx="16" ry="18" fill="url(#violet)"/><ellipse cx="148" cy="98" rx="16" ry="18" fill="url(#violet)"/>
-<ellipse cx="73" cy="99" rx="7" ry="12" fill="#25153d"/><ellipse cx="147" cy="99" rx="7" ry="12" fill="#25153d"/>
-<circle cx="67" cy="91" r="4.4" fill="#fff"/><circle cx="143" cy="91" r="4.4" fill="#fff"/>
-<circle cx="79" cy="105" r="2.3" fill="#e8ceff"/><circle cx="155" cy="105" r="2.3" fill="#e8ceff"/>
-<path d="M48 92 Q69 77 94 91 M126 91 Q151 77 172 92" fill="none" stroke="#080715" stroke-width="4" stroke-linecap="round"/>
+<path d="M51 96 Q72 80 93 95 Q85 113 70 114 Q55 112 51 96Z" fill="#100e20" stroke="#0d0b19" stroke-width="2.5"/>
+<path d="M127 95 Q148 80 169 96 Q165 112 150 114 Q135 113 127 95Z" fill="#100e20" stroke="#0d0b19" stroke-width="2.5"/>
+<ellipse cx="72" cy="99" rx="13.5" ry="15" fill="url(#violet)"/><ellipse cx="148" cy="99" rx="13.5" ry="15" fill="url(#violet)"/>
+<ellipse cx="73" cy="100" rx="5.2" ry="9.5" fill="#34204c"/><ellipse cx="147" cy="100" rx="5.2" ry="9.5" fill="#34204c"/>
+<circle cx="68" cy="93" r="3.2" fill="#fff"/><circle cx="144" cy="93" r="3.2" fill="#fff"/>
+<circle cx="78" cy="105" r="1.6" fill="#e8ceff"/><circle cx="154" cy="105" r="1.6" fill="#e8ceff"/>
+<path d="M51 94 Q71 81 93 93 M127 93 Q149 81 169 94" fill="none" stroke="#080715" stroke-width="2.8" stroke-linecap="round"/>
 <!-- cheeks and nose -->
 <ellipse cx="56" cy="122" rx="10" ry="4.5" fill="#e9a5d0" opacity=".45"/><ellipse cx="164" cy="122" rx="10" ry="4.5" fill="#e9a5d0" opacity=".45"/>
 <path d="M104 119 Q110 114 116 119 Q116 125 110 126 Q104 125 104 119Z" fill="#4b3049"/>
